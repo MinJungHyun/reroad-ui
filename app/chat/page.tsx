@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ChatList() {
-  console.log(0);
   return (
     <div className="flex flex-col justify-start items-center w-[390px] relative">
       <div className="flex justify-between items-start self-stretch flex-grow-0 flex-shrink-0 relative px-4 py-3 bg-white">

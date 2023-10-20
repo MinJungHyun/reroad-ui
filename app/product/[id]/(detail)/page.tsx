@@ -1,4 +1,5 @@
 'use client';
+import { Divider } from '@/component/hr';
 import { IProduct, dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
 interface Props {
@@ -11,13 +12,8 @@ interface IProductProps {
 
 export default function ProductDetail({ params: { id } }: Props) {
   const product: IProduct | null = dummy_products?.find((product) => product.id == Number(id)) || null;
-  console.log('@@@@', id);
-  console.log('@@@@', dummy_products);
-  console.log('@@@@', product);
   const ProductArchive = ({ data }: IProductProps) => {};
   const ImageSlide = ({ data }: IProductProps) => {
-    console.log('@@@@', 1);
-
     return (
       <div className="flex flex-col justify-start items-center  ">
         <div className="self-stretch flex-grow-0 flex-shrink-0 h-[385px] relative overflow-hidden bg-white">
@@ -118,7 +114,7 @@ export default function ProductDetail({ params: { id } }: Props) {
               <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-[#8c8c8c]">매너온도</p>
             </div>
           </div>
-          <hr className="h-px my-1 bg-gray-700 border-1 dark:bg-gray-700 w-full" />
+          <Divider />
           <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
             <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
               <p className="flex-grow-0 flex-shrink-0 text-lg font-bold text-left text-black">소니 Wh-1000xm5 실버 팝니다.</p>
@@ -147,7 +143,7 @@ export default function ProductDetail({ params: { id } }: Props) {
               <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">조회 311</p>
             </div>
           </div>
-          <hr className="h-px my-1 bg-gray-700 border-1 dark:bg-gray-700 w-full" />
+          <Divider />
           <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 relative">
             <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">이 게시글 신고하기</p>
             <div className="flex-grow-0 flex-shrink-0 w-3 h-3">
@@ -156,7 +152,7 @@ export default function ProductDetail({ params: { id } }: Props) {
               </div>
             </div>
           </div>
-          <hr className="h-px my-1 bg-gray-700 border-1 dark:bg-gray-700 w-full" />
+          <Divider />
           <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 relative">
             <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">감성탐방러님의 판매 상품</p>
             <div className="flex-grow-0 flex-shrink-0 w-3 h-3">
@@ -177,7 +173,7 @@ export default function ProductDetail({ params: { id } }: Props) {
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">120,000원</p>
             </div>
           </div>
-          <hr className="h-px my-1 bg-gray-700 border-1 dark:bg-gray-700 w-full" />
+          <Divider />
           <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">이 글과 함께 봤어요</p>
           <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[358px] gap-4">

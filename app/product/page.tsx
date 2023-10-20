@@ -6,7 +6,6 @@ import { default as Hamburger } from '@/public/images/common/ham.svg';
 import Link from 'next/link';
 
 export default function ProductList() {
-  console.log(0);
   return (
     <div className="w-[390px] h-[844px] relative overflow-hidden bg-white">
       <div className="flex flex-col justify-start items-center w-[390px] absolute left-0 top-[47px]">

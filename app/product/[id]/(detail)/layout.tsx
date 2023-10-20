@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import 'remixicon/fonts/remixicon.css';
-import { Divider } from '@/component/hr';
 import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,13 +15,6 @@ const menu1 = [
     icon_on: 'ri-home-5-fill',
     text: '홈',
     link: '/'
-  },
-  {
-    key: 'trade',
-    icon_off: 'ri-bike-line',
-    icon_on: 'ri-bike-fill',
-    text: '중고거래',
-    link: '/trade'
   },
   // {
   //   key: 'roadmap',
@@ -58,7 +49,6 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative ">
-        <Divider />
         <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[390px] py-2 bg-white">
           {menu1.map((menu, index) => (
             <Link href={menu.link} key={menu.key} className="flex flex-col justify-start items-center flex-grow relative gap-1">
@@ -71,7 +61,7 @@ const Footer = () => {
     </div>
   );
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
