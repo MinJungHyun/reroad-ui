@@ -1,8 +1,6 @@
 'use client';
 import { dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
-import { default as SearchBtn } from '@/public/images/common/search.svg';
-import { default as Hamburger } from '@/public/images/common/ham.svg';
 import Link from 'next/link';
 
 export default function ProductList() {

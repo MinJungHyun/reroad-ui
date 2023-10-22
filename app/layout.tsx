@@ -19,11 +19,11 @@ const menu1 = [
     link: '/'
   },
   {
-    key: 'trade',
+    key: 'product',
     icon_off: 'ri-bike-line',
     icon_on: 'ri-bike-fill',
     text: '중고거래',
-    link: '/trade'
+    link: '/product'
   },
   // {
   //   key: 'roadmap',
