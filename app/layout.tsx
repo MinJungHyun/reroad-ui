@@ -1,15 +1,9 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import 'remixicon/fonts/remixicon.css';
+'use client';
 import { Divider } from '@/component/hr';
 import Link from 'next/link';
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: '리로드',
-  description: '자전거 중고거래를 편하게'
-};
+import { usePathname } from 'next/navigation';
+import 'remixicon/fonts/remixicon.css';
+import './globals.css';
 const menu1 = [
   {
     key: 'home',
@@ -72,11 +66,18 @@ const Footer = () => {
   );
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  const isProduct = pathname.includes('/product/');
+  const isChat = pathname.includes('/chat/');
+  const isMypage = pathname.includes('/mypage/');
+  const isHome = pathname === '/';
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="kr">
+      <body>
         {children}
-        <Footer></Footer>
+        {!(isProduct || isChat || isMypage) && <Footer></Footer>}
       </body>
     </html>
   );

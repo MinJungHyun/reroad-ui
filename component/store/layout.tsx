@@ -15,7 +15,7 @@ interface FooterLayout {
   changeMain: () => void;
 }
 
-const useFooterLayout = create<FooterLayout>((set) => ({
+export const useFooterLayout = create<FooterLayout>((set) => ({
   mode: FooterMode.MAIN,
   changeProduct: () => set({ mode: FooterMode.PRODUCT }),
   changeChat: () => set({ mode: FooterMode.CHAT }),
