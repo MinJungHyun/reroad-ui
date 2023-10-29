@@ -1,64 +1,81 @@
-export interface IProduct {
+export interface IChat {
   id: number;
-  title: string;
-  location: string;
+  name: string;
+  address: string;
   time: string;
-  price: string;
-  image: string;
-  chatCount: number;
-  likeCount: number;
+  message: string;
 }
 
-export const dummy_products: IProduct[] = [
+export const dummy_chats: IChat[] = [
   {
     id: 1,
-    title: '에어팟 프로',
-    location: '군자동',
-    time: '3일 전',
-    price: '220,000원',
-    image: '/product/product1.png',
-    chatCount: 3,
-    likeCount: 0
+    name: '요우',
+    address: '군자동',
+    time: '1주 전',
+    message: '감사합니다!! 조심히가세요!'
   },
   {
     id: 2,
-    title: '바이레도 블랑쉬 50ml',
-    location: '광진구 구의제3동',
-    time: '26초 전',
-    price: '4,000원',
-    image: '/product/product2.png',
-    chatCount: 0,
-    likeCount: 5
+    name: '요이키',
+    address: '문정동',
+    time: '1주 전',
+    message: '확인했습니다 감사합니다 :)'
   },
   {
     id: 3,
-    title: '샌드위치',
-    location: '동대문구 휘경동',
-    time: '끌올 59초 전',
-    price: '8,000원',
-    image: '/product/product3.png',
-    chatCount: 3,
-    likeCount: 5
+    name: 'chan',
+    address: '구의동',
+    time: '2주 전',
+    message: '넵 수고하세용'
   },
   {
     id: 4,
-    title: '아이폰 13프로맥스',
-    location: '군자동',
-    time: '1일 전',
-    price: '1,000,000원',
-    image: '/product/product4.png',
-    chatCount: 100,
-    likeCount: 0
+    name: '오지',
+    address: '보문동2가',
+    time: '1달 전',
+    message: '안녕하세요 답장이 너무 늦었네여 죄송···'
   },
   {
     id: 5,
-    title: '커피머신',
-    location: '구리시 교문1동',
-    time: '1초 전',
-    price: '...',
-    image: '/product/product3.png',
-    chatCount: 0,
-    likeCount: 200
+    name: '누룽지',
+    address: '면목동',
+    time: '3달 전',
+    message: '이람다님이 이모티콘을 보냈어요.'
+  },
+  {
+    id: 6,
+    name: 'kenny',
+    address: '자양제4동',
+    time: '3달 전',
+    message: '네.'
+  },
+  {
+    id: 7,
+    name: '자리보금',
+    address: '옥수동',
+    time: '3달 전',
+    message: '자리보금님이 이모티콘을 보냈어요.'
+  },
+  {
+    id: 8,
+    name: '리빙스턴',
+    address: '면목동',
+    time: '6달 전',
+    message: '리빙스턴님이 이모티콘을 보냈어요.'
+  },
+  {
+    id: 9,
+    name: '꺄롱이',
+    address: '중곡동',
+    time: '7달 전',
+    message: '옷 예쁘네요!'
+  },
+  {
+    id: 10,
+    name: '깨롱이',
+    address: '중곡동',
+    time: '7달 전',
+    message: '네.'
   }
 ];
 
