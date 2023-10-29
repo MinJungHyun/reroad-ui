@@ -1,5 +1,6 @@
 'use client';
 import { Divider } from '@/component/hr';
+import { IconHome, IconLink, IconMore } from '@/component/icon';
 import { IProduct, dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,19 +31,19 @@ export default function ProductDetail({ params: { id } }: Props) {
               </div>
               <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
                 <div className="w-6 h-6 absolute left-[50px] top-[0px]">
-                  <i className="ri-home-5-line text-xl text-black"></i>
+                  <IconHome className="text-xl" />
                 </div>
               </div>
             </div>
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
               <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
                 <div className="w-6 h-6 absolute left-[-0.5px] top-[-0.5px] object-contain">
-                  <i className="ri-external-link-line text-xl text-black"></i>
+                  <IconLink className="text-xl" />
                 </div>
               </div>
               <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
                 <div className="w-6 h-6 absolute left-[63.5px] top-[-0.5p" />
-                <i className="ri-more-2-fill text-xl text-black"></i>
+                <IconMore className="text-xl " />
               </div>
             </div>
           </div>

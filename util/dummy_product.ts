@@ -59,6 +59,56 @@ export const dummy_products: IProduct[] = [
     image: '/product/product3.png',
     chatCount: 0,
     likeCount: 200
+  },
+  {
+    id: 6,
+    title: '커피머신',
+    location: '구리시 교문1동',
+    time: '1초 전',
+    price: '...',
+    image: '/product/product3.png',
+    chatCount: 0,
+    likeCount: 200
+  },
+  {
+    id: 7,
+    title: '커피머신',
+    location: '구리시 교문1동',
+    time: '1초 전',
+    price: '...',
+    image: '/product/product3.png',
+    chatCount: 0,
+    likeCount: 200
+  },
+  {
+    id: 8,
+    title: '커피머신',
+    location: '구리시 교문1동',
+    time: '1초 전',
+    price: '...',
+    image: '/product/product3.png',
+    chatCount: 0,
+    likeCount: 200
+  },
+  {
+    id: 9,
+    title: '커피머신',
+    location: '구리시 교문1동',
+    time: '1초 전',
+    price: '...',
+    image: '/product/product3.png',
+    chatCount: 0,
+    likeCount: 200
+  },
+  {
+    id: 10,
+    title: '커피머신',
+    location: '구리시 교문1동',
+    time: '1초 전',
+    price: '...',
+    image: '/product/product3.png',
+    chatCount: 0,
+    likeCount: 200
   }
 ];
 
