@@ -13,7 +13,7 @@ export default function LoginMethod() {
   };
 
   return (
-    <div className="flex flex-col justify-start items-center w-[390px] relative">
+    <div className="flex flex-col justify-start items-center   relative">
       <LoginKakaoButton />
     </div>
   );
