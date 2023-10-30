@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Divider } from '@/component/hr';
 import Link from 'next/link';
-import { IProduct, dummy_products } from '@/util/dummy_chat';
+import { IProduct, dummy_products } from '@/util/dummy_product';
 import { IProductProps } from './page';
 
 const Footer = ({ data }: IProductProps) => {
