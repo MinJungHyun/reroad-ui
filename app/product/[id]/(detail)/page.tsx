@@ -20,7 +20,7 @@ export default function ProductDetail({ params: { id } }: Props) {
       <div className="flex flex-col justify-start items-center  ">
         <div className="self-stretch flex-grow-0 flex-shrink-0 h-[385px] relative overflow-hidden bg-white">
           <img src={data?.image} width={'100%'} style={{ position: 'absolute', left: 0, top: 0 }}></img>
-          <div className="flex justify-between items-start w-[390px] absolute left-0 top-[47px] px-4 py-3.5">
+          <div className="flex justify-between items-start w-[420px] absolute left-0 top-[47px] px-4 py-3.5">
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
               <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
                 <div className="w-6 h-6 absolute left-[0px] top-[0px]">
@@ -90,10 +90,10 @@ export default function ProductDetail({ params: { id } }: Props) {
   };
 
   return (
-    <div className="w-[390px] h-[1630px] relative overflow-hidden bg-white">
+    <div className="max-w-[420px] h-[1630px] relative overflow-hidden bg-white">
       <ImageSlide data={product} />
 
-      <div className="flex flex-col justify-start items-center w-[390px] h-[1630px]  ">
+      <div className="flex flex-col justify-start items-center max-w-[420px] h-[1630px]  ">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4 p-4 bg-white">
           <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
             <div

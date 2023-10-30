@@ -8,7 +8,7 @@ import { FooterMenu } from '@/component/menu';
 
 const MainFooter = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex flex-col justify-center items-center max-w-[390px] min-w-[320px] w-full mx-auto">
+    <div className="fixed bottom-0 left-0 right-0 flex flex-col justify-center items-center max-w-[420px] min-w-[320px] w-full mx-auto">
       <div className="flex justify-end items-start self-stretch flex-grow-0 flex-shrink-0 gap-2.5 p-4">
         <div
           className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2.5 p-3 rounded-[100px] bg-[#ff7e36]"
@@ -35,8 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="kr">
       <body>
-        <div className="w-full flex items-center justify-center bg-rose-400">
-          <div className="max-w-[390px] h-full flex items-center bg-green-200 ">{children}</div>
+        <div className="w-full flex items-center justify-center bg-slate-200">
+          <div className="max-w-[420px] w-full h-full flex items-center bg-green-200 ">{children}</div>
           {isFooter && <MainFooter></MainFooter>}
         </div>
       </body>

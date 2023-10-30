@@ -9,7 +9,7 @@ const Footer = ({ data }: IProductProps) => {
     <div className="flex flex-col justify-start items-center fixed bottom-0">
       <div className="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative">
         <Divider />
-        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[390px] gap-2 px-4 py-2 bg-white">
+        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 max-w-[420px] gap-2 px-4 py-2 bg-white">
           <div className="flex justify-start items-center flex-grow relative gap-4">
             <svg
               width={24}

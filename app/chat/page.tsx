@@ -20,8 +20,8 @@ export default function ChatList() {
   };
   const ChatItem = (chat: IChat) => {
     return (
-      <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative">
-        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[390px] relative gap-4 p-4 bg-white">
+      <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 relative w-full">
+        <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 w-full relative gap-4 p-4 bg-white">
           <img className="flex-grow-0 flex-shrink-0" src="ellipse-2.png" />
           <div className="flex flex-col justify-center items-start self-stretch flex-grow relative gap-1">
             <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
@@ -40,7 +40,7 @@ export default function ChatList() {
     );
   };
   return (
-    <div className="flex flex-col justify-start items-center w-[390px] relative">
+    <div className="flex flex-col justify-start items-center w-[420px] relative">
       <ChatHeader />
       {dummy_chats.map((chat) => (
         <ChatItem {...chat} key={chat.id} />

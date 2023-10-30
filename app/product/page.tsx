@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ProductList() {
-  const ProductHeader = () => {
+  const ProductListHeader = () => {
     return (
       <div className="flex justify-between items-start self-stretch flex-grow-0 flex-shrink-0 px-4 py-3 bg-white sticky top-0  bg-gray-300 z-10">
         <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
@@ -22,7 +22,7 @@ export default function ProductList() {
   };
   const ProductItem = (product: any) => {
     return (
-      <div className="pt-4">
+      <div className="pt-4 w-full">
         <Link href={`/product/${product.id}`} key={product.id}>
           <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
             <Image
@@ -65,8 +65,8 @@ export default function ProductList() {
     );
   };
   return (
-    <div className="">
-      <ProductHeader />
+    <div className="w-full">
+      <ProductListHeader />
       <div className="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
         {dummy_products.map((product, index) => (
           <ProductItem {...product} key={index} />
