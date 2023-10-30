@@ -1,5 +1,5 @@
 'use client';
-import { IconChat, IconMenu, IconNotification, IconSearch } from '@/component/icon';
+import { IconChat, IconHeart, IconMenu, IconNotification, IconSearch } from '@/component/icon';
 import { dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
 import Link from 'next/link';
