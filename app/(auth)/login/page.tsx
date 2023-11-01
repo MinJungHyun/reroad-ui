@@ -11,10 +11,18 @@ export default function LoginMethod() {
       </Link>
     );
   };
+  const LoginGoogleButton = () => {
+    return (
+      <Link href="http://localhost:3010/auth/google">
+        <button>구글로그인</button>
+      </Link>
+    );
+  };
 
   return (
     <div className="flex flex-col justify-start items-center   relative">
       <LoginKakaoButton />
+      <LoginGoogleButton />
     </div>
   );
 }
