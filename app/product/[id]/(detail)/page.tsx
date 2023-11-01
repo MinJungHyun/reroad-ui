@@ -20,35 +20,8 @@ export default function ProductDetail({ params: { id } }: Props) {
       <div className="flex flex-col justify-start items-center  ">
         <div className="self-stretch flex-grow-0 flex-shrink-0 h-[385px] relative overflow-hidden bg-white">
           <img src={data?.image} width={'100%'} style={{ position: 'absolute', left: 0, top: 0 }}></img>
-          <div className="flex justify-between items-start w-[420px] absolute left-0 top-[47px] px-4 py-3.5">
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
-              <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-                <div className="w-6 h-6 absolute left-[0px] top-[0px]">
-                  <Link href="/product">
-                    <i className="ri-arrow-left-s-line text-xl text-black"></i>
-                  </Link>
-                </div>
-              </div>
-              <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-                <div className="w-6 h-6 absolute left-[50px] top-[0px]">
-                  <IconHome className="text-xl" />
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
-              <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-                <div className="w-6 h-6 absolute left-[-0.5px] top-[-0.5px] object-contain">
-                  <IconLink className="text-xl" />
-                </div>
-              </div>
-              <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-                <div className="w-6 h-6 absolute left-[63.5px] top-[-0.5p" />
-                <IconMore className="text-xl " />
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="flex flex-col justify-start items-center w-[390px] absolute left-0 top-[347px] gap-2.5 p-4 bg-gradient-to-b from-black/0 to-black/60">
+        <div className="flex flex-col justify-start items-center w-full absolute left-0 top-[347px] gap-2.5 p-4 bg-gradient-to-b from-black/0 to-black/60">
           <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2">
             <svg
               width={6}
@@ -90,7 +63,7 @@ export default function ProductDetail({ params: { id } }: Props) {
   };
 
   return (
-    <div className="max-w-[420px] h-[1630px] relative overflow-hidden bg-white">
+    <div className="w-full relative overflow-hidden bg-white">
       <ImageSlide data={product} />
 
       <div className="flex flex-col justify-start items-center max-w-[420px] h-[1630px]  ">
