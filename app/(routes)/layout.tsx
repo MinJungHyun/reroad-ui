@@ -1,10 +1,11 @@
 'use client';
-import { Divider } from '@/component/hr';
+import { Divider } from '~/components/hr';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import 'remixicon/fonts/remixicon.css';
 import './globals.css';
-import { FooterMenu } from '@/component/menu';
+import { FooterMenu } from '~/components/menu';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const MainFooter = () => {
   return (
@@ -32,13 +33,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const excludeFooterPath = ['/product/', '/chat/', '/mypage/'];
   const isFooter = excludeFooterPath.every((path) => !pathname.includes(path));
 
+  let queryClient = new QueryClient(); //캐시와 훅을 쓸수있게 정의
   return (
     <html lang="kr">
       <body>
-        <div className="w-full flex items-center justify-center bg-slate-200">
-          <div className="max-w-[420px] w-full h-full flex items-center bg-green-200 ">{children}</div>
-          {isFooter && <MainFooter></MainFooter>}
-        </div>
+        {/* <AuthProvider> */}
+        <QueryClientProvider client={queryClient}>
+          <div className="w-full flex items-center justify-center bg-slate-200">
+            <div className="max-w-[420px] w-full h-full flex items-center bg-green-200 ">{children}</div>
+            {isFooter && <MainFooter></MainFooter>}
+          </div>
+        </QueryClientProvider>
+        {/* </AuthProvider> */}
       </body>
     </html>
   );

@@ -1,8 +1,8 @@
 'use client';
-import { IconChat, IconHeart, IconMenu, IconNotification, IconSearch } from '@/component/icon';
-import { dummy_products } from '@/util/dummy_product';
+import { IconChat, IconHeart, IconMenu, IconNotification, IconSearch } from '~/components/icon';
 import Image from 'next/image';
 import Link from 'next/link';
+import { dummy_product } from '~/util/dummy_product';
 
 export default function ProductList() {
   const ProductListHeader = () => {
@@ -68,7 +68,7 @@ export default function ProductList() {
     <div className="w-full">
       <ProductListHeader />
       <div className="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {dummy_products.map((product, index) => (
+        {dummy_product.map((product, index) => (
           <ProductItem {...product} key={index} />
         ))}
       </div>

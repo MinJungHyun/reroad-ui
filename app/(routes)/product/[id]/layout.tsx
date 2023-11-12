@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Divider } from '@/component/hr';
+import { Divider } from '~/components/hr';
 import Link from 'next/link';
-import { IProduct, dummy_products } from '@/util/dummy_product';
+import { IProduct, dummy_product } from '~/util/dummy_product';
 import { IProductProps } from './page';
-import { IconHome, IconLink, IconMore } from '@/component/icon';
+import { IconHome, IconLink, IconMore } from '~/components/icon';
 
 export default function ProductLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
-  const product: IProduct | null = dummy_products?.find((product) => product.id == Number(id)) || null;
+  const product: IProduct | null = dummy_product?.find((product) => product.id == Number(id)) || null;
 
   const ProductDetailHeader = () => {
     return (

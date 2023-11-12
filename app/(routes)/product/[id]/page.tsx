@@ -1,6 +1,6 @@
 'use client';
-import { Divider } from '@/component/hr';
-import { IconHome, IconLink, IconMore } from '@/component/icon';
+import { Divider } from '@/components/hr';
+import { IconHome, IconLink, IconMore } from '@/app/components/icon';
 import { IProduct, dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
 import Link from 'next/link';

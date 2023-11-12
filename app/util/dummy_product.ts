@@ -9,7 +9,7 @@ export interface IProduct {
   likeCount: number;
 }
 
-export const dummy_products: IProduct[] = [
+export const dummy_product: IProduct[] = [
   {
     id: 1,
     title: '에어팟 프로',

@@ -1,5 +1,5 @@
 'use client';
-import { IconNotification } from '@/component/icon';
+import { IconNotification } from '@/app/components/icon';
 import { IChat, dummy_chats } from '@/util/dummy_chat';
 import { dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
