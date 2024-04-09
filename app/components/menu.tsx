@@ -7,14 +7,14 @@ export const FooterMenu = () => {
       icon_off: 'ri-home-5-line',
       icon_on: 'ri-home-5-fill',
       text: '홈',
-      link: '/'
+      link: '/products'
     },
     {
       key: 'product',
       icon_off: 'ri-bike-line',
       icon_on: 'ri-bike-fill',
       text: '중고거래',
-      link: '/product'
+      link: '/products'
     },
     // {
     //   key: 'roadmap',
@@ -27,7 +27,7 @@ export const FooterMenu = () => {
       icon_off: 'ri-question-answer-line',
       icon_on: 'ri-question-answer-fill',
       text: '채팅',
-      link: '/chat'
+      link: '/chats'
     },
     {
       key: 'mypage',

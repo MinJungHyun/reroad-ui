@@ -21,14 +21,17 @@ export const IconHeart = ({ className }: { className: string }) => {
 };
 
 export const IconHome = ({ className }: { className: string }) => {
-  return <i className={`ri-home-5-line ${ICON_COLOR} ${className}`} />;
+  return <i className={`ri-home-line ${ICON_COLOR} ${className}`} />;
 };
 
 export const IconLink = ({ className }: { className: string }) => {
-  return <i className={`ri-external-link-line ${ICON_COLOR} ${className}`} />;
+  return <i className={`ri-link ${ICON_COLOR} ${className}`} />;
 };
 
 export const IconMore = ({ className }: { className: string }) => {
   return <i className={`ri-more-2-fill ${ICON_COLOR} ${className}`} />;
+};
+export const IconLeft = ({ className }: { className: string }) => {
+  return <i className={`ri-arrow-left-line ${ICON_COLOR} ${className}`} />;
 };
 

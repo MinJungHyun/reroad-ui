@@ -1,6 +1,8 @@
 'use client';
+
 import { Divider } from '~/components/hr';
 import { IProduct, dummy_product } from '~/util/dummy_product';
+
 interface Props {
   params: { id: number };
 }
@@ -9,7 +11,7 @@ export interface IProductProps {
   data?: IProduct | null;
 }
 
-export default function ProductDetail({ params: { id } }: Props) {
+export default function ProductAdd({ params: { id } }: Props) {
   const product: IProduct | null = dummy_product?.find((product) => product.id == Number(id)) || null;
   const ProductArchive = ({ data }: IProductProps) => {};
   const ImageSlide = ({ data }: IProductProps) => {

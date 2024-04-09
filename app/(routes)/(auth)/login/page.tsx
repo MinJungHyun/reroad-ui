@@ -1,5 +1,4 @@
 'use client';
-import { dummy_products } from '@/util/dummy_product';
 import Image from 'next/image';
 import Link from 'next/link';
 

@@ -1,43 +1,36 @@
-import type { Metadata } from 'next';
-import { Divider } from '~/components/hr';
 import Link from 'next/link';
+import { Divider } from '~/components/hr';
+import { IconHome, IconLeft, IconLink, IconMore } from '~/components/icon';
+import { HeaderSticky } from '~/components/layout/HeaderSticky';
 import { IProduct, dummy_product } from '~/util/dummy_product';
 import { IProductProps } from './page';
-import { IconHome, IconLink, IconMore } from '~/components/icon';
 
 export default function ProductLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
   const product: IProduct | null = dummy_product?.find((product) => product.id == Number(id)) || null;
 
-  const ProductDetailHeader = () => {
+  const ProductDetailHeader = ({ data }: IProductProps) => {
     return (
-      <div className="max-w-[420px] w-full flex flex-col justify-between items-start  fixed top-0 z-10">
-        <div className=" w-full flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
-          <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-            <div className="w-6 h-6 absolute left-[0px] top-[0px]">
-              <Link href="/product">
-                <i className="ri-arrow-left-s-line text-xl text-black"></i>
-              </Link>
-            </div>
-          </div>
-          <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-            <div className="w-6 h-6 absolute left-[50px] top-[0px]">
+      <HeaderSticky>
+        <div className="w-full flex justify-between">
+          <div className="flex gap-4">
+            <Link href="/products" scroll={true}>
+              <IconLeft className="text-xl" />
+            </Link>
+            <Link href="/">
               <IconHome className="text-xl" />
-            </div>
+            </Link>
           </div>
-        </div>
-        <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-4">
-          <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-            <div className="w-6 h-6 absolute left-[-0.5px] top-[-0.5px] object-contain">
+          <div className="flex gap-4">
+            <div className="">
               <IconLink className="text-xl" />
             </div>
-          </div>
-          <div className="flex-grow-0 flex-shrink-0 w-6 h-6">
-            <div className="w-6 h-6 absolute left-[63.5px] top-[-0.5p" />
-            <IconMore className="text-xl " />
+            <div className="">
+              <IconMore className="text-xl " />
+            </div>
           </div>
         </div>
-      </div>
+      </HeaderSticky>
     );
   };
   const ProductDetailFooter = ({ data }: IProductProps) => {
@@ -89,7 +82,7 @@ export default function ProductLayout({ children, params }: { children: React.Re
   };
   return (
     <div className="w-full">
-      <ProductDetailHeader></ProductDetailHeader>
+      <ProductDetailHeader data={product}></ProductDetailHeader>
       {children}
       <ProductDetailFooter data={product}></ProductDetailFooter>
     </div>
