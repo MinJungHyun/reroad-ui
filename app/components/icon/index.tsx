@@ -31,7 +31,16 @@ export const IconLink = ({ className }: { className: string }) => {
 export const IconMore = ({ className }: { className: string }) => {
   return <i className={`ri-more-2-fill ${ICON_COLOR} ${className}`} />;
 };
+
 export const IconLeft = ({ className }: { className: string }) => {
   return <i className={`ri-arrow-left-line ${ICON_COLOR} ${className}`} />;
+};
+
+export const IconAttachment = ({ className }: { className: string }) => {
+  return <i className={`ri-attachment-2 ${ICON_COLOR} ${className}`} />;
+};
+
+export const IconSend = ({ className }: { className: string }) => {
+  return <i className={`ri-send-plane-fill ${ICON_COLOR} ${className}`} />;
 };
 
