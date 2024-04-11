@@ -79,3 +79,153 @@ export const dummy_chats: IChat[] = [
   }
 ];
 
+
+export const dummy_chat_detail = [
+  {
+    id: 1,
+    message: '구매원해요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 2,
+    message: '안녕하세요 가능합니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 3,
+    message: '씨엘포레자이 입니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 4,
+    message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 5,
+    message: '지금가도 될까요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 6,
+    message: '지금 밖이에요ㅜ',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 7,
+    message: '언제 가능하세용~?',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 8,
+    message: '구매원해요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 9,
+    message: '안녕하세요 가능합니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 10,
+    message: '씨엘포레자이 입니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 11,
+    message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 12,
+    message: '지금가도 될까요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 13,
+    message: '지금 밖이에요ㅜ',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 14,
+    message: '언제 가능하세용~?',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 15,
+    message: '구매원해요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 16,
+    message: '안녕하세요 가능합니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 17,
+    message: '씨엘포레자이 입니다',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 18,
+    message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 19,
+    message: '지금가도 될까요',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  },
+  {
+    id: 20,
+    message: '지금 밖이에요ㅜ',
+    sender: 'A',
+    receiver: 'B',
+    created_at: new Date()
+  },
+  {
+    id: 21,
+    message: '언제 가능하세용~?',
+    sender: 'B',
+    receiver: 'A',
+    created_at: new Date()
+  }
+]

@@ -1,9 +1,8 @@
 'use client';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
-import { start } from 'repl';
 import { IconAttachment, IconSend } from '~/components/icon';
-import { IProduct } from '~/util/dummy_product';
+import { dummy_chat_detail } from '~/util/dummy_chat';
 
 interface Props {
   params: { id: number };
@@ -76,7 +75,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
     sendMessage(msg);
   };
   return (
-    <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4">
+    <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 opacity-50">
       <div>
         <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
           <IconAttachment className="text-xl" />
@@ -99,7 +98,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
         </div>
       </div>
       <div className="ml-4">
-        <div
+        <button
           className="py-2"
           onClick={(e) => {
             // inputRef.current?.focus();
@@ -112,7 +111,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
               'text-indigo-500': inputValue != ''
             })}
           />
-        </div>
+        </button>
       </div>
     </div>
   );
@@ -127,160 +126,12 @@ const AutoScroll = ({ dep }: { dep: any }) => {
   useEffect(() => {
     scrollToBottom();
   }, [dep]);
-  return <div ref={messagesEndRef} />;
+  return <div ref={messagesEndRef} style={{ width: '100%', height: 1, background: 'red' }} />;
 };
 
 export default function ChatDetail({ params: { id } }: Props) {
   const me = 'B';
-  const [messages, setMessages] = useState<IChatMessage[]>([
-    {
-      id: 1,
-      message: '구매원해요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 2,
-      message: '안녕하세요 가능합니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 3,
-      message: '씨엘포레자이 입니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 4,
-      message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 5,
-      message: '지금가도 될까요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 6,
-      message: '지금 밖이에요ㅜ',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 7,
-      message: '언제 가능하세용~?',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 8,
-      message: '구매원해요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 9,
-      message: '안녕하세요 가능합니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 10,
-      message: '씨엘포레자이 입니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 11,
-      message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 12,
-      message: '지금가도 될까요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 6,
-      message: '지금 밖이에요ㅜ',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 13,
-      message: '언제 가능하세용~?',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 14,
-      message: '구매원해요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 15,
-      message: '안녕하세요 가능합니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 16,
-      message: '씨엘포레자이 입니다',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 17,
-      message: '씨엘포레자이 입니다222 asd asdsdd a asd as dasas d',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 18,
-      message: '지금가도 될까요',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    },
-    {
-      id: 19,
-      message: '지금 밖이에요ㅜ',
-      sender: 'A',
-      receiver: 'B',
-      created_at: new Date()
-    },
-    {
-      id: 20,
-      message: '언제 가능하세용~?',
-      sender: 'B',
-      receiver: 'A',
-      created_at: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<IChatMessage[]>(dummy_chat_detail);
   const addMessage = (message: string) => {
     setMessages([...messages, { id: messages.length + 1, message, sender: me, receiver: 'A', created_at: new Date() }]);
   };
