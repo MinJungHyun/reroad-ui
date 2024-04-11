@@ -1,6 +1,10 @@
+import classNames from 'classnames';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const FooterMenu = () => {
+  const pathname = usePathname();
+
   const menu = [
     {
       key: 'home',
@@ -10,18 +14,12 @@ export const FooterMenu = () => {
       link: '/products'
     },
     {
-      key: 'product',
-      icon_off: 'ri-bike-line',
-      icon_on: 'ri-bike-fill',
-      text: '중고거래',
-      link: '/products'
+      key: 'board',
+      icon_off: 'ri-newspaper-line',
+      icon_on: 'ri-newspaper-fill',
+      text: '게시판',
+      link: '/board'
     },
-    // {
-    //   key: 'roadmap',
-    //   icon_off: 'ri-map-2-line',
-    //   icon_on: 'ri-map-2-fill',
-    //   text: '로드맵'
-    // },
     {
       key: 'chat',
       icon_off: 'ri-question-answer-line',
@@ -40,7 +38,12 @@ export const FooterMenu = () => {
 
   return menu.map((item, index) => (
     <Link href={item.link} key={item.key} className="flex flex-col justify-start items-center flex-grow relative gap-1">
-      <i className={`text-xl text-black ${item.icon_off}`}></i>
+      <i
+        className={classNames('text-xl text-black', {
+          [item.icon_off]: !pathname.includes(item.link),
+          [item.icon_on]: pathname.includes(item.link)
+        })}
+      ></i>
       <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-black">{item.text}</p>
     </Link>
   ));

@@ -43,4 +43,7 @@ export const IconAttachment = ({ className }: { className: string }) => {
 export const IconSend = ({ className }: { className: string }) => {
   return <i className={`ri-send-plane-fill ${ICON_COLOR} ${className}`} />;
 };
+export const IconBoard = ({ className }: { className: string }) => {
+  return <i className={`ri-newspaper-line ${ICON_COLOR} ${className}`} />;
+};
 
