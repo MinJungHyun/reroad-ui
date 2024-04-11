@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { IconNotification } from '~/components/icon';
-import { dummy_chats } from '~/util/dummy_chat';
-import { HeaderSticky } from '../../components/layout/HeaderSticky';
-import { ChatItem } from '~/components/chat/ChatItem';
+import { IconNotification } from "~/components/icon";
+import { dummy_chats } from "~/util/dummy_chat";
+import { HeaderSticky } from "../../components/layout/HeaderSticky";
+import { ChatItem } from "~/components/chat/ChatItem";
 
 export default function ChatList() {
   return (
@@ -24,4 +24,3 @@ export default function ChatList() {
     </div>
   );
 }
-

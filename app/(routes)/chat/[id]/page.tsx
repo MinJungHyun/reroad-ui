@@ -1,12 +1,13 @@
-'use client';
-import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
-import { IconAttachment, IconSend } from '~/components/icon';
-import { dummy_chat_detail } from '~/util/dummy_chat';
+"use client";
+import { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import { IconAttachment, IconSend } from "~/components/icon";
+import { dummy_chat_detail } from "~/util/dummy_chat";
 
 interface Props {
   params: { id: number };
 }
+
 interface IChatMessage {
   id: number;
   message: string;
@@ -18,41 +19,51 @@ interface IChatMessage {
 interface ChatInputProps {
   sendMessage: (msg: string) => void;
 }
+
 const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
-  const me = 'B';
+  const me = "B";
+
   return (
     <div className="flex flex-col h-full mb-16 flex-1 overflow-y-auto pb-4">
       <div className="flex flex-col">
         <div className="grid grid-cols-12 gap-y-2">
           {chatMessages.map((chatMessage, index) => {
             const isMe = me === chatMessage.sender;
-            const isLast = chatMessages[index - 1]?.sender !== chatMessage.sender;
+            const isLast =
+              chatMessages[index - 1]?.sender !== chatMessage.sender;
             return (
               <div
                 key={index}
-                className={classNames('px-1 rounded-lg', {
-                  'col-start-2 col-end-13': isMe,
-                  'col-start-1 col-end-12': !isMe
+                className={classNames("px-1 rounded-lg", {
+                  "col-start-2 col-end-13": isMe,
+                  "col-start-1 col-end-12": !isMe,
                 })}
               >
                 <div
                   className={classNames(`flex flex-row items-center`, {
-                    'flex-row-reverse': isMe
+                    "flex-row-reverse": isMe,
                   })}
                 >
                   {!isMe &&
                     (isLast ? (
-                      <div className={`flex items-center justify-center h-8 w-8 rounded-full bg-indigo-500 flex-shrink-0`}>
+                      <div
+                        className={`flex items-center justify-center h-8 w-8 rounded-full bg-indigo-500 flex-shrink-0`}
+                      >
                         {chatMessage.sender}
                       </div>
                     ) : (
-                      <div className={`flex items-center justify-center h-8 w-8 flex-shrink-0`}></div>
+                      <div
+                        className={`flex items-center justify-center h-8 w-8 flex-shrink-0`}
+                      ></div>
                     ))}
                   <div
-                    className={classNames(`relative ml-3 text-sm py-2 px-4 shadow rounded-xl`, {
-                      'bg-indigo-100': isMe,
-                      'bg-white': !isMe
-                    })}
+                    className={classNames(
+                      `relative ml-3 text-sm py-2 px-4 shadow rounded-xl`,
+                      {
+                        "bg-indigo-100": isMe,
+                        "bg-white": !isMe,
+                      }
+                    )}
                   >
                     <div>{chatMessage.message}</div>
                   </div>
@@ -67,13 +78,14 @@ const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
 };
 const ChatInputs = ({ sendMessage }: ChatInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleMessageSubmit = (msg: string) => {
-    if (msg.trim() === '') return;
-    setInputValue('');
+    if (msg.trim() === "") return;
+    setInputValue("");
     sendMessage(msg);
   };
+
   return (
     <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 ">
       <div>
@@ -89,7 +101,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
             onChange={(e) => setInputValue(e.target.value)}
             value={inputValue}
             onKeyUp={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 handleMessageSubmit(inputValue);
               }
             }}
@@ -106,9 +118,9 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
           }}
         >
           <IconSend
-            className={classNames('text-2xl ', {
-              'text-gray-400': inputValue === '',
-              'text-indigo-500': inputValue != ''
+            className={classNames("text-2xl ", {
+              "text-gray-400": inputValue === "",
+              "text-indigo-500": inputValue != "",
             })}
           />
         </button>
@@ -120,7 +132,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
 const AutoScroll = ({ dep }: { dep: any }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -136,18 +148,26 @@ const AutoScroll = ({ dep }: { dep: any }) => {
 };
 
 export default function ChatDetail({ params: { id } }: Props) {
-  const me = 'B';
+  const me = "B";
   const [messages, setMessages] = useState<IChatMessage[]>(dummy_chat_detail);
   const addMessage = (message: string) => {
-    setMessages([...messages, { id: messages.length + 1, message, sender: me, receiver: 'A', created_at: new Date() }]);
+    setMessages([
+      ...messages,
+      {
+        id: messages.length + 1,
+        message,
+        sender: me,
+        receiver: "A",
+        created_at: new Date(),
+      },
+    ]);
   };
 
   return (
-    <div className="flex flex-col bg-gray-100 p-1">
+    <div className="w-full h-full flex flex-col bg-gray-100 p-1 pt-4">
       <ChatMessages chatMessages={messages} />
       <AutoScroll dep={messages} />
       <ChatInputs sendMessage={addMessage} />
     </div>
   );
 }
-

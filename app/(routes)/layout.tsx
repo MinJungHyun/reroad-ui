@@ -1,9 +1,9 @@
-'use client';
-import { usePathname } from 'next/navigation';
-import 'remixicon/fonts/remixicon.css';
-import { Divider } from '../components/hr';
-import { FooterMenu } from '../components/menu';
-import './globals.css';
+"use client";
+import { usePathname } from "next/navigation";
+import "remixicon/fonts/remixicon.css";
+import { Divider } from "../components/hr";
+import { FooterMenu } from "../components/menu";
+import "./globals.css";
 
 const MainFooter = () => {
   return (
@@ -14,21 +14,26 @@ const MainFooter = () => {
     </div>
   );
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
 
-  const excludeFooterPath = ['/product/', '/chat/', '/mypage/'];
+  const excludeFooterPath = ["/product/", "/chat/", "/mypage/"];
   const isFooter = excludeFooterPath.every((path) => !pathname.includes(path));
 
   return (
     <html lang="kr">
       <body className="bg-slate-200">
         <div className="w-full h-full flex items-center justify-center ">
-          <div className="max-w-[420px] w-full h-full flex flex-col bg-green-200">{children}</div>
+          <div className="max-w-[420px] w-full h-full flex flex-col bg-green-200">
+            {children}
+          </div>
           {isFooter && <MainFooter></MainFooter>}
         </div>
       </body>
     </html>
   );
 }
-
