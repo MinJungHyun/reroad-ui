@@ -21,7 +21,7 @@ interface ChatInputProps {
 const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
   const me = 'B';
   return (
-    <div className="flex flex-col h-full mb-16 flex-1 overflow-y-auto pb-2">
+    <div className="flex flex-col h-full mb-16 flex-1 overflow-y-auto pb-4">
       <div className="flex flex-col">
         <div className="grid grid-cols-12 gap-y-2">
           {chatMessages.map((chatMessage, index) => {
@@ -75,7 +75,7 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
     sendMessage(msg);
   };
   return (
-    <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 opacity-50">
+    <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 ">
       <div>
         <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
           <IconAttachment className="text-xl" />
@@ -124,9 +124,15 @@ const AutoScroll = ({ dep }: { dep: any }) => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    const delayedScroll = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      scrollToBottom();
+    };
+
+    delayedScroll();
   }, [dep]);
-  return <div ref={messagesEndRef} style={{ width: '100%', height: 1, background: 'red' }} />;
+
+  return <div ref={messagesEndRef} />;
 };
 
 export default function ChatDetail({ params: { id } }: Props) {
