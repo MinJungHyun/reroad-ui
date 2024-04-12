@@ -47,3 +47,6 @@ export const IconBoard = ({ className }: { className: string }) => {
   return <i className={`ri-newspaper-line ${ICON_COLOR} ${className}`} />;
 };
 
+export const IconSetting = ({ className }: { className: string }) => {
+  return <i className={`ri-settings-3-line ${ICON_COLOR} ${className}`} />;
+};

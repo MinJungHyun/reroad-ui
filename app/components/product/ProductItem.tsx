@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { IconChat, IconHeart } from '~/components/icon';
+import { IconChat, IconHeart } from '@/components/icon';
 
 export const ProductItem = (product: any) => {
   return (

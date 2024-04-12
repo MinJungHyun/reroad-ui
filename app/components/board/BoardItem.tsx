@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { IconChat, IconHeart } from '~/components/icon';
-import { IBoard } from '~/util/dummy_board';
+import { IconChat, IconHeart } from '@/components/icon';
+import { IBoard } from '@/util/dummy_board';
 
 export const BoardItem = (data: IBoard) => {
   const { id, title, category, name, date, viewCount, commentCount } = data;
