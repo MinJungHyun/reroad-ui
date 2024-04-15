@@ -1,76 +1,25 @@
 'use client';
-
 import { Divider } from '@/components/hr';
-import { IProduct, dummy_product } from '@/util/dummy_product';
-
+import { IBoard, dummy_boards } from '@/util/dummy_board';
 interface Props {
   params: { id: number };
 }
 
-export interface IProductProps {
-  data?: IProduct | null;
+export interface IBoardProps {
+  data?: IBoard | null;
 }
 
-export default function ProductAdd({ params: { id } }: Props) {
-  const product: IProduct | null = dummy_product?.find((product) => product.id == Number(id)) || null;
-  const ProductArchive = ({ data }: IProductProps) => {};
-  const ImageSlide = ({ data }: IProductProps) => {
-    return (
-      <div className="flex flex-col justify-start items-center  ">
-        <div className="self-stretch flex-grow-0 flex-shrink-0 h-[385px] relative overflow-hidden bg-white">
-          <img src={data?.image} width={'100%'} style={{ position: 'absolute', left: 0, top: 0 }}></img>
-        </div>
-        <div className="flex flex-col justify-start items-center w-full absolute left-0 top-[347px] gap-2.5 p-4 bg-gradient-to-b from-black/0 to-black/60">
-          <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2">
-            <svg
-              width={6}
-              height={6}
-              viewBox="0 0 6 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-grow-0 flex-shrink-0"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <circle cx={3} cy={3} r={3} fill="white" />
-            </svg>
-            <svg
-              width={6}
-              height={6}
-              viewBox="0 0 6 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-grow-0 flex-shrink-0 opacity-30"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <circle opacity="0.3" cx={3} cy={3} r={3} fill="white" />
-            </svg>
-            <svg
-              width={6}
-              height={6}
-              viewBox="0 0 6 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-grow-0 flex-shrink-0 opacity-30"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <circle opacity="0.3" cx={3} cy={3} r={3} fill="white" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    );
-  };
+export default function BoardDetail({ params: { id } }: Props) {
+  const board: IBoard | null = dummy_boards?.find((board) => board.id == Number(id)) || null;
 
   return (
     <div className="w-full relative overflow-hidden bg-white">
-      <ImageSlide data={product} />
-
       <div className="flex flex-col justify-start items-center max-w-[420px] h-[1630px]  ">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4 p-4 bg-white">
           <div className="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
             <div
               className="flex-grow-0 flex-shrink-0"
-              style={{ backgroundImage: 'url(/public/product/sony-wh-1000xm5-silver.png)' }}
+              style={{ backgroundImage: 'url(/public/board/sony-wh-1000xm5-silver.png)' }}
             />
             <div className="flex flex-col justify-center items-start flex-grow h-10 relative gap-1">
               <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">1성탐방러</p>
@@ -150,45 +99,6 @@ export default function ProductAdd({ params: { id } }: Props) {
             </div>
           </div>
           <Divider />
-          <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">이 글과 함께 봤어요</p>
-          <div className="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-6">
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[358px] gap-4">
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-2-2.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">에어팟 맥스 실버</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">550,000원</p>
-              </div>
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-3-2.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">닌텐도 스위치</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">120,000원</p>
-              </div>
-            </div>
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[358px] gap-4">
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-2-3.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">소니 헤드폰 블랙색상</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">240,000원</p>
-              </div>
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-3-3.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">급처) 맥북프로</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">130만원</p>
-              </div>
-            </div>
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[358px] gap-4">
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-2-4.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">소니 헤드폰 블랙색상</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">240,000원</p>
-              </div>
-              <div className="flex flex-col justify-start items-start flex-grow h-[170px] relative gap-2">
-                <img className="self-stretch flex-grow rounded" src="rectangle-3-4.png" />
-                <p className="flex-grow-0 flex-shrink-0 text-sm text-left text-black">닌텐도 스위치</p>
-                <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">120,000원</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

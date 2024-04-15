@@ -1,42 +1,35 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { IconChat, IconHeart } from '@/components/icon';
+import { IBoard } from '@/util/dummy_board';
 
-export const ProductItem = (product: any) => {
+export const BoardItem = (data: IBoard) => {
+  const { id, title, category, name, date, viewCount, commentCount } = data;
   return (
     <div className="pt-4 w-full">
-      <Link href={`/product/${product.id}`} key={product.id}>
+      <Link href={`/board/${id}`} key={id}>
         <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-          <Image
-            src={`${product.image}`}
-            alt={product.title}
-            width={110}
-            height={110}
-            objectFit="cover"
-            className="flex-grow-0 flex-shrink-0 w-[110px] h-[110px] rounded"
-          />
           <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1">
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
-              <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">{product.title}</p>
+              <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">{title}</p>
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-1">
-                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{product.location}</p>
+                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{name}</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">·</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">26초 전</p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-[15px] font-bold text-left text-[#ff7e36]">{product.price}</p>
             </div>
 
             <div className="flex justify-end items-center self-stretch flex-grow-0 flex-shrink-0 gap-2">
-              {product.chatCount > 0 && (
+              {viewCount > 0 && (
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5">
                   <IconChat className="text-[#8c8c8c]" />
-                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{product.chatCount}</p>
+                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{viewCount}</p>
                 </div>
               )}
-              {product.likeCount > 0 && (
+              {commentCount > 0 && (
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5">
                   <IconHeart className="text-[#8c8c8c]" />
-                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{product.likeCount}</p>
+                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{commentCount}</p>
                 </div>
               )}
             </div>

@@ -1,10 +1,9 @@
-"use client";
-import { IconNotification, IconSearch } from "@/components/icon";
-import { HeaderFixed } from "@/components/layout/HeaderFixed";
-import { dummy_product } from "@/util/dummy_product";
-import { ProductItem } from "@/components/product/ProductItem";
+import { IconNotification, IconSearch } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import { dummy_boards } from '@/util/dummy_board';
+import { BoardItem } from '@/components/board/BoardItem';
 
-export default function ProductList() {
+export default function BoardList() {
   return (
     <div>
       <HeaderFixed>
@@ -18,11 +17,12 @@ export default function ProductList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {dummy_product.map((product, index) => (
-          <ProductItem {...product} key={index} />
+        {dummy_boards.map((data, index) => (
+          <BoardItem {...data} key={index} />
         ))}
       </div>
       <div className="py-8 bg-gradient-to-b from-white to-[rgba(255,255,255,0)]"></div>
     </div>
   );
 }
+

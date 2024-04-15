@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Divider } from '~/components/hr';
-import { IconHome, IconLeft, IconLink, IconMore } from '~/components/icon';
-import { HeaderSticky } from '~/components/layout/HeaderSticky';
-import { IProduct, dummy_product } from '~/util/dummy_product';
+import { Divider } from '@/components/hr';
+import { IconHome, IconLeft, IconLink, IconMore } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import { IProduct, dummy_product } from '@/util/dummy_product';
 import { IProductProps } from './page';
 
 export default function ProductLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
@@ -11,7 +11,7 @@ export default function ProductLayout({ children, params }: { children: React.Re
 
   const ProductDetailHeader = ({ data }: IProductProps) => {
     return (
-      <HeaderSticky>
+      <HeaderFixed>
         <div className="w-full flex justify-between">
           <div className="flex gap-4">
             <Link href="/products" scroll={true}>
@@ -30,7 +30,7 @@ export default function ProductLayout({ children, params }: { children: React.Re
             </div>
           </div>
         </div>
-      </HeaderSticky>
+      </HeaderFixed>
     );
   };
   const ProductDetailFooter = ({ data }: IProductProps) => {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IChat } from '~/util/dummy_chat';
+import { IChat } from '@/util/dummy_chat';
 
 export const ChatItem = (chat: IChat) => {
   const { id, name, time, message } = chat;

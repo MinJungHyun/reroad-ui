@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { IconAttachment, IconSend } from "~/components/icon";
-import { dummy_chat_detail } from "~/util/dummy_chat";
+import { useEffect, useRef, useState } from "react";
+import { IconAttachment, IconSend } from "@/components/icon";
+import { dummy_chat_detail } from "@/util/dummy_chat";
 
 interface Props {
   params: { id: number };

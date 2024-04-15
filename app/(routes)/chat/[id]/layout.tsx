@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { IconLeft, IconMore } from "~/components/icon";
-import { HeaderSticky } from "~/components/layout/HeaderSticky";
-import { IChat, dummy_chats } from "~/util/dummy_chat";
+import { IconLeft, IconMore } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import { IChat, dummy_chats } from "@/util/dummy_chat";
 
 export interface IChatProps {
   data: IChat | null;
@@ -19,7 +19,7 @@ export default function ChatDetailLayout({
 
   const ChatDetailHeader = ({ data }: IChatProps) => {
     return (
-      <HeaderSticky>
+      <HeaderFixed>
         <div className="w-full flex justify-between gap-4 h-7">
           <div className="flex-0 flex ">
             <Link href="/chats">
@@ -36,7 +36,7 @@ export default function ChatDetailLayout({
             </div>
           </div>
         </div>
-      </HeaderSticky>
+      </HeaderFixed>
     );
   };
 

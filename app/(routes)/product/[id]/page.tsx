@@ -1,6 +1,6 @@
 'use client';
-import { Divider } from '~/components/hr';
-import { IProduct, dummy_product } from '~/util/dummy_product';
+import { Divider } from '@/components/hr';
+import { IProduct, dummy_product } from '@/util/dummy_product';
 interface Props {
   params: { id: number };
 }
