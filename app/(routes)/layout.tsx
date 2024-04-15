@@ -14,7 +14,7 @@ export default function RootLayout({
           <div className="max-w-[420px] w-full h-full flex flex-col bg-green-200">
             {children}
           </div>
-          <FooterMain></FooterMain>
+          <FooterMain />
         </div>
       </body>
     </html>
