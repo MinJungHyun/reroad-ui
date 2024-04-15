@@ -1,8 +1,8 @@
-'use client';
-import { IconNotification, IconSearch } from '~/components/icon';
-import { HeaderSticky } from '~/components/layout/HeaderSticky';
-import { dummy_product } from '~/util/dummy_product';
-import { ProductItem } from '~/components/product/ProductItem';
+"use client";
+import { IconNotification, IconSearch } from "~/components/icon";
+import { HeaderSticky } from "~/components/layout/HeaderSticky";
+import { dummy_product } from "~/util/dummy_product";
+import { ProductItem } from "~/components/product/ProductItem";
 
 export default function ProductList() {
   return (
@@ -26,4 +26,3 @@ export default function ProductList() {
     </div>
   );
 }
-
