@@ -1,9 +1,9 @@
 "use client";
 
 import { IconNotification } from "@/components/icon";
-import { dummy_chats } from "@/util/dummy_chat";
-import { HeaderFixed } from "../../components/layout/HeaderFixed";
+import { dummyChats } from "@/util/dummyChat";
 import { ChatItem } from "@/components/chat/ChatItem";
+import { HeaderFixed } from "../../components/layout/HeaderFixed";
 
 export default function ChatList() {
   return (
@@ -17,7 +17,7 @@ export default function ChatList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col bg-white">
-        {dummy_chats.map((chat) => (
+        {dummyChats.map((chat) => (
           <ChatItem {...chat} key={chat.id} />
         ))}
       </div>

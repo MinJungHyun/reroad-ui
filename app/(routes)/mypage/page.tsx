@@ -1,10 +1,11 @@
-import { IconSetting } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { Avatar } from '@/components/ui/avatar';
+import { IconSetting } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import { Avatar } from "@/components/ui/avatar";
+
 export default function MypageHome() {
   return (
     <div>
-      <HeaderFixed divline={true}>
+      <HeaderFixed divline>
         <div className="flex gap-1">
           <p className="text-lg font-bold text-left text-black">마이페이지</p>
         </div>
@@ -18,4 +19,3 @@ export default function MypageHome() {
     </div>
   );
 }
-

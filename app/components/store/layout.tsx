@@ -1,12 +1,12 @@
-import { create } from 'zustand';
+import { create } from "zustand";
+
 enum FooterMode {
-  MAIN = 'MAIN',
-  PRODUCT = 'PRODUCT',
-  CHAT = 'CHAT',
-  MYPAGE = 'MYPAGE'
+  MAIN = "MAIN",
+  PRODUCT = "PRODUCT",
+  CHAT = "CHAT",
+  MYPAGE = "MYPAGE",
 }
-type FooterModeType = keyof typeof FooterMode;
-// 타입을 정의해준다.
+
 interface FooterLayout {
   mode: FooterMode;
   changeProduct: () => void;
@@ -20,6 +20,5 @@ export const useFooterLayout = create<FooterLayout>((set) => ({
   changeProduct: () => set({ mode: FooterMode.PRODUCT }),
   changeChat: () => set({ mode: FooterMode.CHAT }),
   changeMypage: () => set({ mode: FooterMode.MYPAGE }),
-  changeMain: () => set({ mode: FooterMode.MAIN })
+  changeMain: () => set({ mode: FooterMode.MAIN }),
 }));
-

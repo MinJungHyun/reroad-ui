@@ -1,12 +1,9 @@
 "use client";
-import classNames from "classnames";
-import { useEffect, useRef, useState } from "react";
-import { IconAttachment, IconSend } from "@/components/icon";
-import { dummy_chat_detail } from "@/util/dummy_chat";
 
-interface Props {
-  params: { id: number };
-}
+import { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import { IconAttachment, IconSend } from "@/components/icon";
+import { dummyChatDetail } from "@/util/dummyChat";
 
 interface IChatMessage {
   id: number;
@@ -20,7 +17,7 @@ interface ChatInputProps {
   sendMessage: (msg: string) => void;
 }
 
-const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
+function ChatMessages({ chatMessages }: { chatMessages: IChatMessage[] }) {
   const me = "B";
 
   return (
@@ -33,7 +30,7 @@ const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
               chatMessages[index - 1]?.sender !== chatMessage.sender;
             return (
               <div
-                key={index}
+                key={chatMessage.id}
                 className={classNames("px-1 rounded-lg", {
                   "col-start-2 col-end-13": isMe,
                   "col-start-1 col-end-12": !isMe,
@@ -46,15 +43,11 @@ const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
                 >
                   {!isMe &&
                     (isLast ? (
-                      <div
-                        className={`flex items-center justify-center h-8 w-8 rounded-full bg-indigo-500 flex-shrink-0`}
-                      >
+                      <div className="flex items-center justify-center h-8 w-8 rounded-full bg-indigo-500 flex-shrink-0">
                         {chatMessage.sender}
                       </div>
                     ) : (
-                      <div
-                        className={`flex items-center justify-center h-8 w-8 flex-shrink-0`}
-                      ></div>
+                      <div className="flex items-center justify-center h-8 w-8 flex-shrink-0" />
                     ))}
                   <div
                     className={classNames(
@@ -62,7 +55,7 @@ const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
                       {
                         "bg-indigo-100": isMe,
                         "bg-white": !isMe,
-                      }
+                      },
                     )}
                   >
                     <div>{chatMessage.message}</div>
@@ -75,8 +68,8 @@ const ChatMessages = ({ chatMessages }: { chatMessages: IChatMessage[] }) => {
       </div>
     </div>
   );
-};
-const ChatInputs = ({ sendMessage }: ChatInputProps) => {
+}
+function ChatInputs({ sendMessage }: ChatInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
 
@@ -89,7 +82,10 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
   return (
     <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 ">
       <div>
-        <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
+        <button
+          type="button"
+          className="flex items-center justify-center text-gray-400 hover:text-gray-600"
+        >
           <IconAttachment className="text-xl" />
         </button>
       </div>
@@ -111,8 +107,9 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
       </div>
       <div className="ml-4">
         <button
+          type="button"
           className="py-2"
-          onClick={(e) => {
+          onClick={() => {
             // inputRef.current?.focus();
             handleMessageSubmit(inputValue);
           }}
@@ -120,16 +117,16 @@ const ChatInputs = ({ sendMessage }: ChatInputProps) => {
           <IconSend
             className={classNames("text-2xl ", {
               "text-gray-400": inputValue === "",
-              "text-indigo-500": inputValue != "",
+              "text-indigo-500": inputValue !== "",
             })}
           />
         </button>
       </div>
     </div>
   );
-};
+}
 
-const AutoScroll = ({ dep }: { dep: any }) => {
+function AutoScroll({ dep }: { dep: IChatMessage[] }) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -137,7 +134,9 @@ const AutoScroll = ({ dep }: { dep: any }) => {
 
   useEffect(() => {
     const delayedScroll = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 30));
+      await new Promise((resolve) => {
+        setTimeout(resolve, 30);
+      });
       scrollToBottom();
     };
 
@@ -145,11 +144,15 @@ const AutoScroll = ({ dep }: { dep: any }) => {
   }, [dep]);
 
   return <div ref={messagesEndRef} />;
-};
+}
 
-export default function ChatDetail({ params: { id } }: Props) {
+// interface Props {
+//   params: { id: number };
+// }
+
+export default function ChatDetail() {
   const me = "B";
-  const [messages, setMessages] = useState<IChatMessage[]>(dummy_chat_detail);
+  const [messages, setMessages] = useState<IChatMessage[]>(dummyChatDetail);
   const addMessage = (message: string) => {
     setMessages([
       ...messages,
