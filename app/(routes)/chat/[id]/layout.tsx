@@ -1,14 +1,21 @@
-import Link from 'next/link';
-import { IconLeft, IconMore } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { IChat, dummy_chats } from '@/util/dummy_chat';
+import Link from "next/link";
+import { IconLeft, IconMore } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import { IChat, dummy_chats } from "@/util/dummy_chat";
 
 export interface IChatProps {
   data: IChat | null;
 }
-export default function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
+export default function ChatDetailLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { id: string };
+}) {
   const { id } = params;
-  const chat: IChat | null = dummy_chats?.find((chat) => chat.id == Number(id)) || null;
+  const chat: IChat | null =
+    dummy_chats?.find((chat) => chat.id == Number(id)) || null;
 
   const ChatDetailHeader = ({ data }: IChatProps) => {
     return (
@@ -32,9 +39,11 @@ export default function ChatDetailLayout({ children, params }: { children: React
       </HeaderFixed>
     );
   };
+
   const ChatInputContainer = () => {
     return <></>;
   };
+
   return (
     <div className="w-full">
       <ChatDetailHeader data={chat}></ChatDetailHeader>
@@ -43,4 +52,3 @@ export default function ChatDetailLayout({ children, params }: { children: React
     </div>
   );
 }
-
