@@ -11,7 +11,7 @@ export default function RootLayout({
     <html lang="kr">
       <body className="bg-slate-200">
         <div className="w-full h-full flex items-center justify-center ">
-          <div className="max-w-[420px] w-full h-full flex flex-col bg-green-200">
+          <div className="max-w-[420px] w-full h-full flex flex-col bg-slate-100">
             {children}
           </div>
           <FooterMain />

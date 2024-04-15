@@ -12,29 +12,6 @@ interface IMenu {
   link: string;
 }
 
-function FooterButton({ item }: { item: IMenu }) {
-  const pathname = usePathname();
-
-  const { iconOff, iconOn, text, link } = item;
-
-  return (
-    <Link
-      href={link}
-      className="flex flex-col justify-start items-center flex-grow relative gap-1"
-    >
-      <i
-        className={classNames("text-xl text-black", {
-          [iconOff]: !pathname.includes(link),
-          [iconOn]: pathname.includes(link),
-        })}
-      />
-      <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-black">
-        {text}
-      </p>
-    </Link>
-  );
-}
-
 const menu = [
   {
     id: "home",
@@ -65,10 +42,34 @@ const menu = [
     link: "/mypage",
   },
 ];
+
+function FooterButton({ item }: { item: IMenu }) {
+  const pathname = usePathname();
+
+  const { iconOff, iconOn, text, link } = item;
+
+  return (
+    <Link
+      href={link}
+      className="flex flex-col justify-start items-center flex-grow relative gap-1"
+    >
+      <i
+        className={classNames("text-xl text-black", {
+          [iconOff]: !pathname.includes(link),
+          [iconOn]: pathname.includes(link),
+        })}
+      />
+      <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-black">
+        {text}
+      </p>
+    </Link>
+  );
+}
+
 export function FooterMain() {
   const pathname = usePathname();
 
-  const excludeFooterPath = ["/product/", "/chat/", "/mypage/"];
+  const excludeFooterPath = ["/product/", "/chat/", "/mypage/", "/add"];
   const isFooter = excludeFooterPath.every((path) => !pathname.includes(path));
   if (!isFooter) return null;
   return (
