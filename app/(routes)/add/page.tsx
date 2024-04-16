@@ -177,7 +177,7 @@ export default function AddProduct() {
                           <FormControl>
                             <Checkbox
                               checked={Array.isArray(field.value) && field.value.includes(item.id)}
-                              onCheckedChange={onCheckedChange}
+                              onCheckedChange={(checked) => onCheckedChange(field, !!checked)}
                             />
                           </FormControl>
                           <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
