@@ -1,3 +1,10 @@
+import Login from '@/components/user/Login';
+
 export default function Home() {
-  return <div>hi</div>;
+  return (
+    <>
+      <Login></Login>
+    </>
+  );
 }
+

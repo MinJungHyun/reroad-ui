@@ -1,18 +1,19 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 function LoginKakaoButton() {
   return (
     <Link href="http://localhost:3010/auth/kakao">
-      <button type="button">카카오로그인</button>
+      <Button type="button">카카오로그인</Button>
     </Link>
   );
 }
 function LoginGoogleButton() {
   return (
     <Link href="http://localhost:3010/auth/google">
-      <button type="button">구글로그인</button>
+      <Button type="button">구글로그인</Button>
     </Link>
   );
 }
