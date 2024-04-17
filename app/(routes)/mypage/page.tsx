@@ -1,6 +1,7 @@
-import { IconSetting } from "@/components/icon";
-import { HeaderFixed } from "@/components/layout/HeaderFixed";
-import { Avatar } from "@/components/ui/avatar";
+import { IconSetting } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import { Avatar } from '@/components/ui/avatar';
+import UserAvatar from '@/components/user/UserAvatar';
 
 export default function MypageHome() {
   return (
@@ -14,8 +15,9 @@ export default function MypageHome() {
         </div>
       </HeaderFixed>
       <main className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white pb-4 mb-16">
-        <Avatar src="https://github.com/shadcn.png" />
+        <UserAvatar></UserAvatar>
       </main>
     </div>
   );
 }
+

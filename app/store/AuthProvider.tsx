@@ -1,22 +1,37 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import create from 'zustand';
+import { create } from 'zustand';
 import { getCookie } from 'cookies-next';
-// import { useCookies } from 'next-client-cookies';
-const defaultState = {
-  accessToken: '',
-  setAccessToken: () => {}
-};
+
 const AuthContext = createContext({});
 
-export const useAuth = () => useContext(AuthContext);
+interface IUserStore {
+  user: IUserInfo | null;
+  setUser: (user: IUserInfo) => void;
+}
+interface IUserInfo {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+}
+const useAuthStore = create((set) => ({
+  accessToken: '', // 초기값은 빈 문자열로 설정합니다.
+  setAccessToken: (accessToken: string) => set({ accessToken }) // accessToken을 설정하는 함수를 정의합니다.
+}));
 
 const decodeAccessToken = (accessToken: string) => {
   return JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64').toString());
 };
+const useUserStore = create<IUserStore>((set) => ({
+  user: null, // 초기값은 null로 설정합니다.
+  setUser: (user) => set({ user }) // 유저 정보를 설정하는 함수를 정의합니다.
+}));
+
+// 이제 useUserStore 상태 저장소를 훅으로 사용하여 유저 정보에 접근할 수 있습니다.
+export const useUser = () => useUserStore((state) => state.user);
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  // const cookies = useCookies();
-  const useAuthStore = create(/* your Zustand store */);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,12 +44,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLoading(false);
         return;
       }
+      const payload = decodeAccessToken(accessToken);
+      console.log(payload);
+      useUserStore.setState({ user: payload });
 
-      // // access token이 있으면 decode 해서 exp를 확인하고, 만료되었는지 확인
-      const decodedToken = decodeAccessToken(accessToken);
-      console.log('@@@@', decodedToken);
-
-      // const expirationTime = decodedToken.exp * 1000; // UNIX timestamp
+      const expirationTime = payload.exp * 1000; // UNIX timestamp
 
       // if (Date.now() >= expirationTime) {
       //   // Access token이 만료된 경우, refresh token 또는 다른 인증 방법을 사용하여 새로운 access token을 가져옴
