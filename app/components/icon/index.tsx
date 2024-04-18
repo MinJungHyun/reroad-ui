@@ -1,4 +1,4 @@
-const ICON_COLOR = "text-[#333333]";
+const ICON_COLOR = 'text-[#333333]';
 
 export function IconSearch({ className }: { className: string }) {
   return <i className={`ri-search-line ${ICON_COLOR} ${className}`} />;
@@ -17,7 +17,10 @@ export function IconChat({ className }: { className: string }) {
 }
 
 export function IconHeart({ className }: { className: string }) {
-  return <i className={`ri-heart-3-line ${ICON_COLOR} ${className}`} />;
+  return <i className={`ri-heart-line ${ICON_COLOR} ${className}`} />;
+}
+export function IconHeartFill({ className }: { className: string }) {
+  return <i className={`ri-heart-fill ${ICON_COLOR} ${className}`} />;
 }
 
 export function IconHome({ className }: { className: string }) {
@@ -50,3 +53,21 @@ export function IconBoard({ className }: { className: string }) {
 export function IconSetting({ className }: { className: string }) {
   return <i className={`ri-settings-3-line ${ICON_COLOR} ${className}`} />;
 }
+
+export function IconReceipt({ className }: { className: string }) {
+  return <i className={`ri-receipt-line ${ICON_COLOR} ${className}`} />;
+}
+
+export function IconShopping({ className }: { className: string }) {
+  return <i className={`ri-shopping-bag-4-line ${ICON_COLOR} ${className}`} />;
+}
+export function IconMapPin({ className }: { className: string }) {
+  return <i className={`ri-map-pin-range-line ${ICON_COLOR} ${className}`} />;
+}
+export function IconBookmark({ className }: { className: string }) {
+  return <i className={`ri-bookmark-3-line ${ICON_COLOR} ${className}`} />;
+}
+export function IconMegaphone({ className }: { className: string }) {
+  return <i className={`ri-megaphone-line ${ICON_COLOR} ${className}`} />;
+}
+

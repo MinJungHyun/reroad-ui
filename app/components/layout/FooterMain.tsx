@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import classNames from "classnames";
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import classNames from 'classnames';
 
 interface IMenu {
   id: string;
@@ -14,33 +14,33 @@ interface IMenu {
 
 const menu = [
   {
-    id: "home",
-    iconOff: "ri-home-5-line",
-    iconOn: "ri-home-5-fill",
-    text: "홈",
-    link: "/products",
+    id: 'home',
+    iconOff: 'ri-home-5-line',
+    iconOn: 'ri-home-5-fill',
+    text: '홈',
+    link: '/products'
   },
   {
-    id: "board",
-    iconOff: "ri-newspaper-line",
-    iconOn: "ri-newspaper-fill",
-    text: "게시판",
-    link: "/boards",
+    id: 'board',
+    iconOff: 'ri-newspaper-line',
+    iconOn: 'ri-newspaper-fill',
+    text: '게시판',
+    link: '/boards'
   },
   {
-    id: "chat",
-    iconOff: "ri-question-answer-line",
-    iconOn: "ri-question-answer-fill",
-    text: "채팅",
-    link: "/chats",
+    id: 'chat',
+    iconOff: 'ri-question-answer-line',
+    iconOn: 'ri-question-answer-fill',
+    text: '채팅',
+    link: '/chats'
   },
   {
-    id: "mypage",
-    iconOff: "ri-user-smile-line",
-    iconOn: "ri-user-smile-fill",
-    text: "내정보",
-    link: "/mypage",
-  },
+    id: 'mypage',
+    iconOff: 'ri-user-smile-line',
+    iconOn: 'ri-user-smile-fill',
+    text: '내정보',
+    link: '/mypg'
+  }
 ];
 
 function FooterButton({ item }: { item: IMenu }) {
@@ -49,19 +49,14 @@ function FooterButton({ item }: { item: IMenu }) {
   const { iconOff, iconOn, text, link } = item;
 
   return (
-    <Link
-      href={link}
-      className="flex flex-col justify-start items-center flex-grow relative gap-1"
-    >
+    <Link href={link} className="flex flex-col justify-start items-center flex-grow relative gap-1">
       <i
-        className={classNames("text-xl text-black", {
+        className={classNames('text-2xl text-black', {
           [iconOff]: !pathname.includes(link),
-          [iconOn]: pathname.includes(link),
+          [iconOn]: pathname.includes(link)
         })}
       />
-      <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-black">
-        {text}
-      </p>
+      <p className={classNames('flex-grow-0 flex-shrink-0 text-xs text-left text-black', {})}>{text}</p>
     </Link>
   );
 }
@@ -69,7 +64,7 @@ function FooterButton({ item }: { item: IMenu }) {
 export function FooterMain() {
   const pathname = usePathname();
 
-  const excludeFooterPath = ["/product/", "/chat/", "/mypage/", "/add"];
+  const excludeFooterPath = ['/product/', '/chat/', '/mypg/', '/add'];
   const isFooter = excludeFooterPath.every((path) => !pathname.includes(path));
   if (!isFooter) return null;
   return (
@@ -82,3 +77,4 @@ export function FooterMain() {
     </div>
   );
 }
+

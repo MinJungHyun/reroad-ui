@@ -5,8 +5,7 @@ import { Avatar } from '../ui/avatar';
 import { Button } from '../ui/button';
 
 export default function UserAvatar() {
-  const { user, logout } = useAuth();
-  console.log('@@@@');
+  const { user } = useAuth();
 
   if (!user?.id)
     return (
@@ -14,7 +13,6 @@ export default function UserAvatar() {
         <Link href="/login">
           <Button>로그인</Button>
         </Link>
-        로그인해주세요
       </>
     );
   return (
@@ -24,15 +22,6 @@ export default function UserAvatar() {
           <Avatar src={user.image} />
         </div>
         <div>{user.name}</div>
-      </div>
-      <div>
-        <Button
-          onClick={() => {
-            logout();
-          }}
-        >
-          로그아웃
-        </Button>
       </div>
     </>
   );

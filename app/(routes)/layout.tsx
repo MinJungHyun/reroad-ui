@@ -9,15 +9,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="kr">
       <body className="bg-slate-200">
         <NextTopLoader
-          color="#2299DD"
+          color="#004EFF"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
           crawl={true}
-          showSpinner={true}
+          showSpinner={false}
           easing="ease"
           speed={200}
-          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+          shadow="0 0 10px #004EFF,0 0 5px #004EFF"
         />
         <AuthProvider>
           <div className="w-full h-full flex items-center justify-center ">
