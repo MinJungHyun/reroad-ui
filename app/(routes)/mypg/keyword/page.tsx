@@ -19,9 +19,7 @@ export default function KeywordList() {
           </div>
         </div>
       </HeaderFixed>
-      <main className="p-3">
-        <KeywordRegister></KeywordRegister>
-      </main>
+      <KeywordRegister></KeywordRegister>
     </div>
   );
 }
