@@ -1,38 +1,23 @@
 'use client';
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { create } from 'zustand';
-import { getCookie } from 'cookies-next';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
+import { getCookie, setCookie } from 'cookies-next';
 
-const AuthContext = createContext({});
-
-interface IUserStore {
-  user: IUserInfo | null;
-  setUser: (user: IUserInfo) => void;
-}
 interface IUserInfo {
   id: string;
   name: string;
   email: string;
   image: string;
 }
-const useAuthStore = create((set) => ({
-  accessToken: '', // 초기값은 빈 문자열로 설정합니다.
-  setAccessToken: (accessToken: string) => set({ accessToken }) // accessToken을 설정하는 함수를 정의합니다.
-}));
 
 const decodeAccessToken = (accessToken: string) => {
   return JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64').toString());
 };
-const useUserStore = create<IUserStore>((set) => ({
-  user: null, // 초기값은 null로 설정합니다.
-  setUser: (user) => set({ user }) // 유저 정보를 설정하는 함수를 정의합니다.
-}));
-
-// 이제 useUserStore 상태 저장소를 훅으로 사용하여 유저 정보에 접근할 수 있습니다.
-export const useUser = () => useUserStore((state) => state.user);
+const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<IUserInfo>({} as IUserInfo);
 
   useEffect(() => {
     const checkAccessTokenValidity = async () => {
@@ -46,7 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
       const payload = decodeAccessToken(accessToken);
       console.log(payload);
-      useUserStore.setState({ user: payload });
+      setUser(payload);
 
       const expirationTime = payload.exp * 1000; // UNIX timestamp
 
@@ -70,6 +55,45 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     checkAccessTokenValidity();
   }, []);
 
-  return <AuthContext.Provider value={useAuthStore}>{children}</AuthContext.Provider>;
+  const login = async () => {
+    try {
+      const res = await fetch('/api/login');
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data);
+        // router.push('/');
+      } else {
+        throw new Error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      setUser({} as IUserInfo);
+      setCookie('access_token', '', { expires: new Date(0) });
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
+  const updateUser = (userData: IUserInfo) => {
+    setUser(userData);
+  };
+
+  return <AuthContext.Provider value={{ user, login, logout, updateUser }}>{children}</AuthContext.Provider>;
+};
+interface IAuthContext {
+  user: IUserInfo;
+  login: () => void;
+  logout: () => void;
+  updateUser: (userData: IUserInfo) => void;
+}
+
+export const useAuth = () => {
+  const context = useContext(AuthContext) as IAuthContext;
+  return context;
 };
 

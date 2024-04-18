@@ -1,10 +1,10 @@
 'use client';
-import { useUser } from '@/store/AuthProvider';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Login() {
-  const user = useUser();
+  const { user } = useAuth();
 
   if (user) return <></>;
 

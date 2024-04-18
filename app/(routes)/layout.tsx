@@ -2,7 +2,7 @@ import 'remixicon/fonts/remixicon.css';
 import { FooterMain } from '@/components/layout/FooterMain';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
-import { AuthProvider } from '@/store/AuthProvider';
+import { AuthProvider } from '@/hooks/useAuth';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
