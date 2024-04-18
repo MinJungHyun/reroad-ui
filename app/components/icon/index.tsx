@@ -35,8 +35,8 @@ export function IconMore({ className }: { className: string }) {
   return <i className={`ri-more-2-fill ${ICON_COLOR} ${className}`} />;
 }
 
-export function IconLeft({ className }: { className: string }) {
-  return <i className={`ri-arrow-left-line ${ICON_COLOR} ${className}`} />;
+export function IconLeft({ className }: { className?: string }) {
+  return <i className={`ri-arrow-left-s-line ${ICON_COLOR} ${className} text-3xl`} />;
 }
 
 export function IconAttachment({ className }: { className: string }) {
@@ -69,5 +69,9 @@ export function IconBookmark({ className }: { className: string }) {
 }
 export function IconMegaphone({ className }: { className: string }) {
   return <i className={`ri-megaphone-line ${ICON_COLOR} ${className}`} />;
+}
+
+export function IconDelete({ className }: { className: string }) {
+  return <i className={`ri-delete-bin-line ${ICON_COLOR} ${className}`} />;
 }
 

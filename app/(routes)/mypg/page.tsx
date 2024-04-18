@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function MypageHome() {
   return (
     <div>
-      <HeaderFixed divline>
+      <HeaderFixed border>
         <div className="flex gap-3">
           <p className="text-lg font-bold text-left text-black">마이페이지</p>
         </div>

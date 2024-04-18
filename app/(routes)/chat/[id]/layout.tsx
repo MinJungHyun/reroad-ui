@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { IconLeft, IconMore } from "@/components/icon";
-import { HeaderFixed } from "@/components/layout/HeaderFixed";
-import { IChat, dummyChats } from "@/util/dummyChat";
+import Link from 'next/link';
+import { IconLeft, IconMore } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import { IChat, dummyChats } from '@/util/dummyChat';
 
 export interface IChatProps {
   data: IChat | null;
@@ -13,7 +13,7 @@ function ChatDetailHeader({ data }: IChatProps) {
       <div className="w-full flex justify-between gap-4 h-7">
         <div className="flex-0 flex ">
           <Link href="/chats">
-            <IconLeft className="text-xl" />
+            <IconLeft />
           </Link>
         </div>
         <div className="flex-auto flex-row gap-4">
@@ -34,16 +34,9 @@ function ChatInputContainer() {
   return null;
 }
 
-export default function ChatDetailLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { id: string };
-}) {
+export default function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
-  const chat: IChat | null =
-    dummyChats?.find((ct) => ct.id === Number(id)) || null;
+  const chat: IChat | null = dummyChats?.find((ct) => ct.id === Number(id)) || null;
 
   return (
     <div className="w-full">
@@ -53,3 +46,4 @@ export default function ChatDetailLayout({
     </div>
   );
 }
+
