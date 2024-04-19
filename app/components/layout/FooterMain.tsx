@@ -18,12 +18,19 @@ const menu = [
     iconOff: 'ri-home-5-line',
     iconOn: 'ri-home-5-fill',
     text: '홈',
+    link: '/'
+  },
+  {
+    id: 'products',
+    iconOff: 'ri-search-line',
+    iconOn: 'ri-search-eye-fill',
+    text: '상품',
     link: '/products'
   },
   {
     id: 'board',
-    iconOff: 'ri-newspaper-line',
-    iconOn: 'ri-newspaper-fill',
+    iconOff: 'ri-article-line',
+    iconOn: 'ri-article-fill',
     text: '게시판',
     link: '/boards'
   },
@@ -52,8 +59,8 @@ function FooterButton({ item }: { item: IMenu }) {
     <Link href={link} className="flex flex-col justify-start items-center flex-grow relative gap-1">
       <i
         className={classNames('text-2xl text-black', {
-          [iconOff]: !pathname.includes(link),
-          [iconOn]: pathname.includes(link)
+          [iconOff]: pathname !== link,
+          [iconOn]: pathname == link
         })}
       />
       <p className={classNames('flex-grow-0 flex-shrink-0 text-xs text-left text-black', {})}>{text}</p>

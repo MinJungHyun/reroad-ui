@@ -47,7 +47,7 @@ export function IconSend({ className }: { className: string }) {
   return <i className={`ri-send-plane-fill ${ICON_COLOR} ${className}`} />;
 }
 export function IconBoard({ className }: { className: string }) {
-  return <i className={`ri-newspaper-line ${ICON_COLOR} ${className}`} />;
+  return <i className={`ri-article-line ${ICON_COLOR} ${className}`} />;
 }
 
 export function IconSetting({ className }: { className: string }) {
