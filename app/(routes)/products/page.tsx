@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { IconNotification, IconSearch } from "@/components/icon";
-import { HeaderFixed } from "@/components/layout/HeaderFixed";
-import { dummyProduct } from "@/util/dummyProduct";
-import { ProductItem } from "@/components/product/ProductItem";
+import { IconNotification, IconSearch } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import { ProductItem } from '@/components/product/ProductItem';
+import { dummyProduct } from '@/util/dummyProduct';
+import Link from 'next/link';
 
 export default function ProductList() {
   return (
@@ -23,7 +24,13 @@ export default function ProductList() {
           <ProductItem {...product} key={product.id} />
         ))}
       </div>
-      <div className="py-8 bg-gradient-to-b from-white to-[rgba(255,255,255,0)]" />
+      <div className="py-8 bg-white" />
+      <Link href="/add">
+        <button className="fixed bottom-20 right-4 bg-blue-200 w-12 h-12 text-3xl flex items-center  justify-center rounded-full">
+          <i className="ri-add-line"></i>
+        </button>
+      </Link>
     </div>
   );
 }
+

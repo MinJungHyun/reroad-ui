@@ -75,3 +75,7 @@ export function IconDelete({ className }: { className: string }) {
   return <i className={`ri-delete-bin-line ${ICON_COLOR} ${className}`} />;
 }
 
+export function IconCamera({ className }: { className: string }) {
+  return <i className={`ri-camera-fill ${ICON_COLOR} ${className}`} />;
+}
+

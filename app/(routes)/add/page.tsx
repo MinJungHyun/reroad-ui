@@ -3,18 +3,23 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Link from 'next/link';
 
-import { RefAttributes } from 'react';
 import { IconLeft } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input, InputProps } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input, InputProps } from '@/components/ui/input';
+import { Textarea, TextareaProps } from '@/components/ui/textarea';
+import { RefAttributes, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import React, { useRef } from 'react';
+import { ImageUploader } from './ImageUploader';
+
 const SaveCheckDialog = ({ children }: { children: React.ReactNode }) => {
+  const Router = useRouter();
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -23,7 +28,14 @@ const SaveCheckDialog = ({ children }: { children: React.ReactNode }) => {
           <DialogTitle className="text-sm text-left">작성 중인 판매 글을 저장할까요?</DialogTitle>
           <DialogDescription>
             <Button className="w-full mb-1">저장</Button>
-            <Button className="w-full bg-slate-300">저장 안 함</Button>
+            <Button
+              className="w-full bg-slate-300"
+              onClick={() => {
+                Router.push('/products');
+              }}
+            >
+              저장 안 함
+            </Button>
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
@@ -32,16 +44,16 @@ const SaveCheckDialog = ({ children }: { children: React.ReactNode }) => {
 };
 function AddProductHeader() {
   return (
-    <HeaderFixed>
+    <HeaderFixed border>
       <div className="w-full flex justify-between gap-4 h-7">
-        <div className="flex-0 flex ">
+        <div className="flex-0 flex gap-2 items-center ">
           <SaveCheckDialog>
-            <IconLeft className="text-xl" />
+            <IconLeft />
           </SaveCheckDialog>
+          <div className="flex-auto text-lg font-bold text-left text-black">내 물건 팔기</div>
         </div>
-        <div className="flex-auto text-m">내 물건 팔기</div>
-        <div className="flex-0 flex gap-4">
-          <div className="text-xs flex items-center">임시저장</div>
+        <div className="flex-0 flex">
+          <div className="text-l flex items-center">임시저장</div>
         </div>
       </div>
     </HeaderFixed>
@@ -50,16 +62,16 @@ function AddProductHeader() {
 
 const formSchema = z.object({
   productName: z.string().min(2, {
-    message: '사용자 이름은 최소 2글자 이상이어야 합니다.'
+    message: '상품명을 적어주세요.'
   }),
   locations: z.array(z.string()).refine((value: string[]) => value.some((item: string) => item), {
     message: '적어도 하나의 항목을 선택해야 합니다.'
   }),
   price: z.string().min(1, {
-    message: '가격은 최소 1글자 이상이어야 합니다.'
+    message: '가격을 적어주세요.'
   }),
   description: z.string().min(1, {
-    message: '설명은 최소 1글자 이상이어야 합니다.'
+    message: '설명을 적어주세요.'
   })
 });
 const items = [
@@ -87,15 +99,9 @@ export default function AddProduct() {
   const onCheckedChange = (field: InputProps & RefAttributes<HTMLInputElement>, checked: boolean) => {
     if (Array.isArray(field.value)) {
       if (checked) {
-        // FIXME:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        field.onChange([...field.value, item.id]);
+        // field.onChange([...field.value, item.id]);
       } else {
-        // FIXME:
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        field.onChange(field.value.filter((value) => value !== item.id));
+        // field.onChange(field.value.filter((value) => value !== item.id));
       }
     }
   };
@@ -110,18 +116,20 @@ export default function AddProduct() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
         <AddProductHeader />
+        <div className="p-4 pr-0 bg-white">
+          <ImageUploader />
+        </div>
         {/* 이미지 업로드 버튼 */}
-        <div className="p-4 space-y-4 ">
+        <div className="p-4 space-y-12 bg-white">
           <FormField
             control={form.control}
             name="productName"
             render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => (
               <FormItem>
-                <FormLabel className="text-xs">상품명</FormLabel>
+                <p className="text-xs">상품명</p>
                 <FormControl>
                   <Input placeholder="상품명" {...field} />
                 </FormControl>
-                {/* <FormDescription></FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -131,11 +139,10 @@ export default function AddProduct() {
             name="price"
             render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => (
               <FormItem>
-                <FormLabel className="text-xs">거래방식</FormLabel>
+                <p className="text-xs">거래방식</p>
                 <FormControl>
                   <Input placeholder="￦ 가격을 입력해주세요" {...field} />
                 </FormControl>
-                {/* <FormDescription></FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -143,17 +150,12 @@ export default function AddProduct() {
           <FormField
             control={form.control}
             name="description"
-            render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => (
+            render={({ field }: { field: TextareaProps & React.RefAttributes<HTMLTextAreaElement> }) => (
               <FormItem>
-                <FormLabel className="text-xs">자세한 설명</FormLabel>
+                <p className="text-xs">자세한 설명</p>
                 <FormControl>
-                  {/*
-                  // FIXME:
-                  eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  @ts-ignore */}
                   <Textarea placeholder="상품의 연식, 상태를 자세히 적어주세요." {...field} className="h-36" />
                 </FormControl>
-                {/* <FormDescription></FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -163,9 +165,7 @@ export default function AddProduct() {
             name="locations"
             render={() => (
               <FormItem>
-                <div className="mb-4">
-                  <FormLabel className="text-xs">거래희망장소</FormLabel>
-                </div>
+                <p className="text-xs mb-4">거래희망장소</p>
                 {items.map((item) => (
                   <FormField
                     key={item.id}
@@ -192,7 +192,7 @@ export default function AddProduct() {
           />
         </div>
         <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 ">
-          <Button type="submit" className="  w-full ">
+          <Button type="submit" className="  w-full " size={'lg'}>
             완료
           </Button>
         </div>
