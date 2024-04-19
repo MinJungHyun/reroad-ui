@@ -5,33 +5,15 @@ import { API_BASE_URL } from '@/lib/consts';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { getCookie, setCookie } from 'cookies-next';
+import { toast } from 'sonner';
+
+interface IKeyword {
+  id: number;
+  word: string;
+}
 
 export default function KeywordRegister() {
-  const [keywordList, setKeywordList] = useState<string[]>([
-    'mx master',
-    '이케아',
-    '디스플레이링크',
-    '맥',
-    '삼성',
-    '애플',
-    'm1',
-    '맥스튜디오',
-    '맥미니',
-    '갤럭시',
-    '아이폰',
-    '아이패드',
-    '맥북',
-    '맥북프로',
-    '맥북에어',
-    '아이맥',
-    '맥프로',
-    '맥에어',
-    '맥북프로13',
-    '맥북프로16',
-    '맥북에어13',
-    '맥북에어16',
-    '아이맥21'
-  ]);
+  const [keywordList, setKeywordList] = useState<string[]>([]);
   const [keyword, setKeyword] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
@@ -49,25 +31,56 @@ export default function KeywordRegister() {
 
     addKeyword(msg);
   };
+  const handleKeywordDelete = async (word: string) => {
+    setKeywordList(keywordList.filter((item) => item !== word));
+
+    const token = getCookie('access_token');
+    console.log('@@@@', token);
+
+    await fetch(`${API_BASE_URL}/keyword?word=${word}`, {
+      method: 'DELETE',
+
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+  };
+  const getKeywordList = async () => {
+    const token = getCookie('access_token');
+
+    fetch(`${API_BASE_URL}/keyword`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setKeywordList(data.map((item: IKeyword) => item.word));
+      });
+  };
+
+  useEffect(() => {
+    getKeywordList();
+  }, [getCookie('access_token')]);
 
   useEffect(() => {
     if (keyword != '') {
-      // fetch, post /keyword
-      console.log('@@@@keyword', keyword);
       const token = getCookie('access_token');
       fetch(`${API_BASE_URL}/keyword`, {
         method: 'POST',
         body: JSON.stringify({
-          word: keyword,
-          userId: '1'
+          word: keyword
         }),
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
-      console.log('@@@@keyword', keyword);
       setKeyword('');
+      toast('키워드 알림이 등록되었습니다.');
     }
   }, [keyword]);
 
@@ -116,7 +129,9 @@ export default function KeywordRegister() {
                   setKeywordList(keywordList.filter((_, i) => i !== index));
                 }}
               >
-                <IconDelete className="text-2xl"></IconDelete>
+                <div onClick={(e) => handleKeywordDelete(keyword)}>
+                  <IconDelete className="text-2xl"></IconDelete>
+                </div>
               </button>
             </div>
           </div>

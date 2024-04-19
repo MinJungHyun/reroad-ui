@@ -3,6 +3,7 @@ import { FooterMain } from '@/components/layout/FooterMain';
 import './globals.css';
 import NextTopLoader from 'nextjs-toploader';
 import { AuthProvider } from '@/hooks/useAuth';
+import { Toaster } from '@/components/ui/sonner';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <FooterMain />
           </div>
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   );
