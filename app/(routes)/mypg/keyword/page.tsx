@@ -1,10 +1,12 @@
 import { IconLeft } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { LikeItem } from '@/components/mypage/LikeItem';
-import { Input } from '@/components/ui/input';
-import { dummyProduct } from '@/util/dummyProduct';
 import Link from 'next/link';
-import KeywordRegister from './keywordRegister';
+import KeywordRegister from './KeywordRegister';
+
+export interface IKeyword {
+  id: number;
+  word: string;
+}
 
 export default function KeywordList() {
   return (

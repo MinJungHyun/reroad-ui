@@ -56,7 +56,7 @@ function FooterButton({ item }: { item: IMenu }) {
   const { iconOff, iconOn, text, link } = item;
 
   return (
-    <Link href={link} className="flex flex-col justify-start items-center flex-grow relative gap-1">
+    <Link href={link} className="flex flex-col justify-start items-center flex-grow relative">
       <i
         className={classNames('text-2xl text-black', {
           [iconOff]: pathname !== link,
