@@ -116,7 +116,7 @@ export default function AddProduct() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
         <AddProductHeader />
-        <div className="p-4 pr-0 bg-white">
+        <div className="pl-4 pb-4 bg-white">
           <ImageUploader />
         </div>
         {/* 이미지 업로드 버튼 */}
