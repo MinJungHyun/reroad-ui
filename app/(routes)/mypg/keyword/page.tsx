@@ -1,7 +1,7 @@
 import { IconLeft } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import Link from 'next/link';
-import KeywordRegister from './KeywordRegister';
+import KeywordRegister from './KeywordReg';
 
 export interface IKeyword {
   id: number;
