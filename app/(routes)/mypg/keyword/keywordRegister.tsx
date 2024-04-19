@@ -1,8 +1,10 @@
 'use client';
 import { IconDelete, IconSend } from '@/components/icon';
 import { Input } from '@/components/ui/input';
+import { API_BASE_URL } from '@/lib/consts';
 import classNames from 'classnames';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { getCookie, setCookie } from 'cookies-next';
 
 export default function KeywordRegister() {
   const [keywordList, setKeywordList] = useState<string[]>([
@@ -38,13 +40,37 @@ export default function KeywordRegister() {
     if (keyword.trim() === '') return;
     if (keywordList.includes(keyword)) return; // 이미 있어요~
     setKeywordList([keyword, ...keywordList]);
-    setKeyword('');
+    setKeyword(keyword);
   };
   const handleKeywordSubmit = (msg: string) => {
     if (msg.trim() === '') return;
     setInputValue('');
+    console.log('@@@@', msg);
+
     addKeyword(msg);
   };
+
+  useEffect(() => {
+    if (keyword != '') {
+      // fetch, post /keyword
+      console.log('@@@@keyword', keyword);
+      const token = getCookie('access_token');
+      fetch(`${API_BASE_URL}/keyword`, {
+        method: 'POST',
+        body: JSON.stringify({
+          word: keyword,
+          userId: '1'
+        }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('@@@@keyword', keyword);
+      setKeyword('');
+    }
+  }, [keyword]);
+
   return (
     <div>
       <div className="sticky top-[52px] bg-white p-5 pb-0">
