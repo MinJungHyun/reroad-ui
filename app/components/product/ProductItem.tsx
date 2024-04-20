@@ -4,7 +4,7 @@ import { IconChat, IconHeart } from '@/components/icon';
 import { IProduct } from '@/util/dummyProduct';
 
 export function ProductItem({ id, images, name, location, price, chatCount, likeCount }: IProduct) {
-  const image: string = images[0]?.['url'] as string ;
+  const image: string = images[0]?.['url'] as string;
   return (
     <div className="pt-4 w-full">
       <Link href={`/product/${id}`} key={id}>
@@ -15,7 +15,6 @@ export function ProductItem({ id, images, name, location, price, chatCount, like
               alt={name}
               width={110}
               height={110}
-              objectFit="cover"
               className="flex-grow-0 flex-shrink-0 w-[110px] h-[110px] rounded"
             />
           ) : (
