@@ -3,14 +3,15 @@ import Link from 'next/link';
 import { IconChat, IconHeart, IconHeartFill } from '@/components/icon';
 import { IProduct } from '@/util/dummyProduct';
 
-export function LikeItem({ id, image, title, location, price, chatCount, likeCount }: IProduct) {
+export function LikeItem({ id, images, name, location, price, chatCount, likeCount }: IProduct) {
+  const image: string = images[0]?.['url'] as string;
   return (
     <div className="pt-4 w-full">
       <Link href={`/product/${id}`} key={id}>
         <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
           <Image
             src={`${image}`}
-            alt={title}
+            alt={name}
             width={110}
             height={110}
             objectFit="cover"
@@ -19,7 +20,7 @@ export function LikeItem({ id, image, title, location, price, chatCount, likeCou
           <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1">
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
               <div className="flex flex-row justify-between">
-                <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">{title}</p>
+                <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">{name}</p>
                 <IconHeartFill className="text-2xl text-[#dd0000]"></IconHeartFill>
               </div>
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-1">

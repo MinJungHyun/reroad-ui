@@ -3,24 +3,34 @@
 import { IconNotification, IconSearch } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import { ProductItem } from '@/components/product/ProductItem';
-import { dummyProduct } from '@/util/dummyProduct';
+import { dummyProduct, IProduct } from '@/util/dummyProduct';
 import Link from 'next/link';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { categories } from '@/lib/category';
 import { CategorySelector } from './CategorySelector';
 import { useEffect, useState } from 'react';
+import api from '@/hooks/axios';
 
 export default function ProductList() {
   const [nowCategory, setNowCategory] = useState<string>('110');
+  const [productList, setProductList] = useState<IProduct[]>([]);
 
   const handleCategoryChange = (value: string) => {
     setNowCategory(value);
   };
 
+  const getProductByCategory = async () => {
+    if (nowCategory) {
+      const res = await api.get(`/product/category/${nowCategory}`);
+      const { data } = res;
+      setProductList(data);
+      console.log('@@@@', data);
+    }
+  };
+
   useEffect(() => {
     if (nowCategory) {
-      // await api.get(`/products?category=${nowCategory}`);
-      console.log('@@@@nowCategory', nowCategory);
+      getProductByCategory();
     }
   }, [nowCategory]);
   return (
@@ -37,9 +47,7 @@ export default function ProductList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {dummyProduct.map((product) => (
-          <ProductItem {...product} key={product.id} />
-        ))}
+        {productList.length ? productList.map((product) => <ProductItem {...product} key={product.id} />) : <>로딩중...</>}
       </div>
       <div className="py-8 bg-white" />
       <Link href="/add">
