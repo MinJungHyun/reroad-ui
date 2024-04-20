@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const checkAccessTokenValidity = async () => {
       const accessToken = getCookie('access_token');
-      console.log('@@@@', accessToken);
 
       if (!accessToken) {
         // Access token이 없는 경우 로그인 페이지로 리디렉션 또는 다른 처리

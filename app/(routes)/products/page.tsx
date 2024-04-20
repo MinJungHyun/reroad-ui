@@ -5,14 +5,31 @@ import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import { ProductItem } from '@/components/product/ProductItem';
 import { dummyProduct } from '@/util/dummyProduct';
 import Link from 'next/link';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { categories } from '@/lib/category';
+import { CategorySelector } from './CategorySelector';
+import { useEffect, useState } from 'react';
 
 export default function ProductList() {
+  const [nowCategory, setNowCategory] = useState<string>('110');
+
+  const handleCategoryChange = (value: string) => {
+    setNowCategory(value);
+  };
+
+  useEffect(() => {
+    if (nowCategory) {
+      // await api.get(`/products?category=${nowCategory}`);
+      console.log('@@@@nowCategory', nowCategory);
+    }
+  }, [nowCategory]);
   return (
     <div>
       <HeaderFixed>
         <div className="flex gap-1">
-          <p className="text-lg font-bold text-left text-black">군자동</p>
-          <i className="ri-arrow-down-s-line text-black text-2xl" />
+          <p className="text-lg font-bold text-left text-black">
+            <CategorySelector value={nowCategory} onChange={handleCategoryChange} />
+          </p>
         </div>
         <div className="flex gap-4">
           <IconSearch className="text-xl" />
