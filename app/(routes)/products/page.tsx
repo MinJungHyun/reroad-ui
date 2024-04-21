@@ -2,14 +2,12 @@
 
 import { IconNotification, IconSearch } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { ProductItem } from '@/components/product/ProductItem';
-import { dummyProduct, IProduct } from '@/util/dummyProduct';
-import Link from 'next/link';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { categories } from '@/lib/category';
-import { CategorySelector } from './CategorySelector';
-import { useEffect, useState } from 'react';
 import api from '@/hooks/axios';
+import { IProduct } from '@/util/dummyProduct';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { CategorySelector } from './CategorySelector';
+import { ProductItem } from './ProductItem';
 
 export default function ProductList() {
   const [nowCategory, setNowCategory] = useState<string>('110');

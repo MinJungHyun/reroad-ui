@@ -1,4 +1,4 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectScrollDownButton, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { categories } from '@/lib/category';
 
 export const CategorySelector = ({ value, onChange }: { value: string; onChange: (val: string) => void }) => {
