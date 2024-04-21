@@ -2,6 +2,7 @@
 
 import { IconNotification, IconSearch } from "@/components/icon";
 import { HeaderSticky } from "@/components/layout/HeaderSticky";
+import Divider from "@/components/ui/divider";
 
 export default function ProductList() {
   return (
@@ -46,7 +47,7 @@ export default function ProductList() {
         </div>
       </div>
 
-      <div className="bg-[#D9D9D9] w-full h-[1px]" />
+      <Divider type="thin" />
 
       <div className="flex flex-col w-full box-sizing-border">
         <div className="bg-[#FFFFFF] flex flex-col p-[16px_16.9px_16px_16px] w-[100%] box-sizing-border">
@@ -103,7 +104,7 @@ export default function ProductList() {
           </div>
         </div>
 
-        <div className="bg-[#EEEEEE] w-full h-[4px]" />
+        <Divider />
 
         <div className="relative flex flex-col w-[100%] box-sizing-border">
           <div className="bg-[#FFFFFF] flex flex-col p-[16px_16.1px_16px_16px] w-[100%] box-sizing-border">
@@ -164,7 +165,7 @@ export default function ProductList() {
           </div>
         </div>
 
-        <div className="bg-[#EEEEEE] w-full h-[4px]" />
+        <Divider />
       </div>
     </div>
   );
