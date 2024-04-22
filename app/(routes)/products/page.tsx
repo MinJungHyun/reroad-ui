@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CategorySelector } from './CategorySelector';
 import { ProductItem } from './ProductItem';
+import { ProductItemSkeleton } from './ProductItemSkeleton';
 
 export default function ProductList() {
   const [nowCategory, setNowCategory] = useState<string>('110');
@@ -45,7 +46,17 @@ export default function ProductList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {productList.length ? productList.map((product) => <ProductItem {...product} key={product.id} />) : <>로딩중...</>}
+        {productList.length ? (
+          productList.map((product) => <ProductItem {...product} key={product.id} />)
+        ) : (
+          <>
+            <ProductItemSkeleton />
+            <ProductItemSkeleton />
+            <ProductItemSkeleton />
+            <ProductItemSkeleton />
+            <ProductItemSkeleton />
+          </>
+        )}
       </div>
       <div className="py-8 bg-white" />
       <Link href="/add">
