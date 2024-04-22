@@ -7,7 +7,7 @@ export const CategorySelector = ({ value, onChange }: { value: string; onChange:
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={categories[0].name} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent ref={(ref) => ref?.addEventListener('touchend', (e) => e.preventDefault())}>
         {categories.map((category) => (
           <SelectItem key={category.id} value={`${category.id}`}>
             {category.name}
