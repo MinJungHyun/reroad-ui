@@ -46,11 +46,15 @@ export default function KeywordRegister() {
   useEffect(() => {
     const keywordRefine = keyword.trim();
     if (keywordRefine != '') {
-      api.post('/keyword', {
-        word: keywordRefine
-      });
+      api
+        .post('/keyword', {
+          word: keywordRefine
+        })
+        .then(() => {
+          getKeywordList();
+        });
+
       setKeyword('');
-      getKeywordList();
       toast('키워드 알림이 등록되었습니다.', { duration: 800 });
     }
   }, [keyword]);
