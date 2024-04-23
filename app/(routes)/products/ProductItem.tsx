@@ -19,8 +19,9 @@ const parseToWon = (price: number | string): string => {
   }
 };
 
-export function ProductItem({ id, images, name, location, price, chatCount, likeCount }: IProduct) {
+export function ProductItem({ id, images, name, location, price, chatCount, likeCount, createdBy }: IProduct) {
   const image: string = images[0]?.['url'] as string;
+  const userName: string = createdBy?.name as string;
 
   return (
     <div className="pt-4 w-full">
@@ -49,7 +50,7 @@ export function ProductItem({ id, images, name, location, price, chatCount, like
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
               <p className="flex-grow-0 flex-shrink-0 w-[220px] text-base text-left text-black">{name}</p>
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-1">
-                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{location}</p>
+                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{userName}</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">·</p>
                 <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">26초 전</p>
               </div>

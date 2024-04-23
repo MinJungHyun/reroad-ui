@@ -1,6 +1,11 @@
 interface IProductImage {
   url: string;
 }
+
+interface IUser {
+  id: number;
+  name: string;
+}
 export interface IProduct {
   id: number;
   name: string;
@@ -10,6 +15,8 @@ export interface IProduct {
   images: IProductImage[];
   chatCount: number;
   likeCount: number;
+
+  createdBy?: IUser;
 }
 
 export const dummyProduct: IProduct[] = [

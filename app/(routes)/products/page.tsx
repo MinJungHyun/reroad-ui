@@ -23,7 +23,6 @@ export default function ProductList() {
       const res = await api.get(`/product/category/${nowCategory}`);
       const { data } = res;
       setProductList(data);
-      console.log('@@@@', data);
     }
   };
 
@@ -47,7 +46,9 @@ export default function ProductList() {
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
         {productList.length ? (
-          productList.map((product) => <ProductItem {...product} key={product.id} />)
+          productList.map((product) => {
+            return <ProductItem {...product} key={product.id} />;
+          })
         ) : (
           <>
             <ProductItemSkeleton />

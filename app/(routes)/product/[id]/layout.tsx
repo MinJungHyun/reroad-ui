@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { Divider } from "@/components/hr";
-import { IconHome, IconLeft, IconLink, IconMore } from "@/components/icon";
-import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import Link from 'next/link';
+import { Divider } from '@/components/hr';
+import { IconHome, IconLeft, IconLink, IconMore } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
 // import { IProduct, dummyProduct } from "@/util/dummyProduct";
 
 function ProductDetailHeader() {
@@ -28,7 +28,7 @@ function ProductDetailHeader() {
     </HeaderFixed>
   );
 }
-function ProductDetailFooter() {
+function ProductDetailFooter({ productId }: { productId: number }) {
   return (
     <div className="max-w-[420px] w-full flex flex-col justify-start items-center fixed bottom-0">
       <div className=" w-full flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative">
@@ -61,19 +61,13 @@ function ProductDetailFooter() {
               <path d="M1 0V38" stroke="#EEEEEE" />
             </svg>
             <div className="flex flex-col justify-start items-start flex-grow relative gap-0.5">
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">
-                360,000원
-              </p>
-              <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#8c8c8c]">
-                가격 제안 불가
-              </p>
+              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">360,000원</p>
+              <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#8c8c8c]">가격 제안 불가</p>
             </div>
           </div>
-          <Link href="/chat">
+          <Link href={`/chat/${productId}`}>
             <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2.5 px-3.5 py-2 rounded bg-[#ff7e36]">
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">
-                채팅하기
-              </p>
+              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">채팅하기</p>
             </div>
           </Link>
         </div>
@@ -83,7 +77,7 @@ function ProductDetailFooter() {
 }
 
 export default function ProductLayout({
-  children,
+  children
   // params,
 }: {
   children: React.ReactNode;
@@ -97,7 +91,8 @@ export default function ProductLayout({
     <div className="w-full">
       <ProductDetailHeader />
       {children}
-      <ProductDetailFooter />
+      <ProductDetailFooter productId={1000} />
     </div>
   );
 }
+
