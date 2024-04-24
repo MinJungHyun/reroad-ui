@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { IconNotification } from "@/components/icon";
-import { dummyChats } from "@/util/dummyChat";
-import { ChatItem } from "@/components/chat/ChatItem";
-import { HeaderFixed } from "../../components/layout/HeaderFixed";
+import { IconNotification } from '@/components/icon';
+import { dummyChats } from '@/util/dummyChat';
+import { HeaderFixed } from '../../components/layout/HeaderFixed';
+import { ChatItem } from './ChatItem';
+import ChatList from './ChatList';
 
-export default function ChatList() {
+export default function ChatsPage() {
   return (
     <div>
       <HeaderFixed>
@@ -16,11 +17,8 @@ export default function ChatList() {
           <IconNotification className="text-xl" />
         </div>
       </HeaderFixed>
-      <div className="flex flex-col bg-white">
-        {dummyChats.map((chat) => (
-          <ChatItem {...chat} key={chat.id} />
-        ))}
-      </div>
+      <ChatList />
     </div>
   );
 }
+
