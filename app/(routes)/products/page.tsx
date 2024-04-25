@@ -32,6 +32,11 @@ export default function ProductList() {
       }
       const res = await api.get(`/product/category_cursor/${nowCategory}?take=${defaultTake}&${cursor}`);
       const { data } = res;
+      // 더 불러올 데이터가 있는지 확인
+      if (data.length === 0) {
+        setHasMore(false);
+        return;
+      }
       const isAlready = productList.find((product) => product.id === data[0].id);
       if (isAlready) {
         return;
@@ -56,7 +61,7 @@ export default function ProductList() {
       }
       const res = await api.get(`/product/category_cursor/${nowCategory}?take=${defaultTake}&${cursor}`);
       const { data } = res;
-      const isAlready = productList.find((product) => product.id === data[0].id);
+      const isAlready = productList.length > 0 ? productList?.find((product) => product?.id === data[0]?.id) : true;
       if (isAlready) {
         return;
       }
@@ -71,10 +76,14 @@ export default function ProductList() {
       }
     }
   };
-
   useEffect(() => {
-    getProductByCategory();
-  }, []);
+    if (nowCategory) {
+      setProductList([]);
+
+      getProductByCategory();
+    }
+  }, [nowCategory]);
+
   return (
     <div>
       <HeaderFixed>
