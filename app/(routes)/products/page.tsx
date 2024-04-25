@@ -9,10 +9,15 @@ import { useEffect, useState } from 'react';
 import { CategorySelector } from './CategorySelector';
 import { ProductItem } from './ProductItem';
 import { ProductItemSkeleton } from './ProductItemSkeleton';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
+const defaultTake = 10;
 export default function ProductList() {
+  const [hasMore, setHasMore] = useState(true);
+
   const [nowCategory, setNowCategory] = useState<string>('110');
   const [productList, setProductList] = useState<IProduct[]>([]);
+  const [lastId, setLastId] = useState<string>();
 
   const handleCategoryChange = (value: string) => {
     setNowCategory(value);
@@ -20,17 +25,56 @@ export default function ProductList() {
 
   const getProductByCategory = async () => {
     if (nowCategory) {
-      const res = await api.get(`/product/category/${nowCategory}`);
+      let cursor = '';
+
+      if (lastId) {
+        cursor = `&cursorId=${lastId}`;
+      }
+      const res = await api.get(`/product/category_cursor/${nowCategory}?take=${defaultTake}&${cursor}`);
       const { data } = res;
-      setProductList(data);
+      const isAlready = productList.find((product) => product.id === data[0].id);
+      if (isAlready) {
+        return;
+      }
+      setProductList((prev) => [...prev, ...data]);
+
+      if (data.length > 0) {
+        setLastId(data[data.length - 1].id);
+      }
+      // 더 불러올 데이터가 있는지 확인
+      if (data.length === 0) {
+        setHasMore(false);
+      }
+    }
+  };
+  const getProductByCategory2 = async () => {
+    if (nowCategory) {
+      let cursor = '';
+
+      if (lastId) {
+        cursor = `&cursorId=${lastId}`;
+      }
+      const res = await api.get(`/product/category_cursor/${nowCategory}?take=${defaultTake}&${cursor}`);
+      const { data } = res;
+      const isAlready = productList.find((product) => product.id === data[0].id);
+      if (isAlready) {
+        return;
+      }
+      setProductList((prev) => [...prev, ...data]);
+
+      if (data.length > 0) {
+        setLastId(data[data.length - 1].id);
+      }
+      // 더 불러올 데이터가 있는지 확인
+      if (data.length === 0) {
+        setHasMore(false);
+      }
     }
   };
 
   useEffect(() => {
-    if (nowCategory) {
-      getProductByCategory();
-    }
-  }, [nowCategory]);
+    getProductByCategory();
+  }, []);
   return (
     <div>
       <HeaderFixed>
@@ -45,11 +89,18 @@ export default function ProductList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {productList.length ? (
-          productList.map((product) => {
+        <InfiniteScroll
+          dataLength={productList.length}
+          next={getProductByCategory2}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          endMessage={<p></p>}
+        >
+          {productList.map((product) => {
             return <ProductItem {...product} key={product.id} />;
-          })
-        ) : (
+          })}
+        </InfiniteScroll>
+        {/* ) : (
           <>
             <ProductItemSkeleton />
             <ProductItemSkeleton />
@@ -57,7 +108,7 @@ export default function ProductList() {
             <ProductItemSkeleton />
             <ProductItemSkeleton />
           </>
-        )}
+        )} */}
       </div>
       <div className="py-8 bg-white" />
       <Link href="/add">
