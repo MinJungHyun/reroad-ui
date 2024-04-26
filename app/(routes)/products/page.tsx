@@ -20,9 +20,7 @@ export default function ProductList() {
   const [lastId, setLastId] = useState<string>();
 
   const handleCategoryChange = (value: string) => {
-    console.log('@@@@', 1);
-
-    // setNowCategory(value);
+    setNowCategory(value);
   };
 
   const getProductByCategory = async () => {
@@ -59,8 +57,6 @@ export default function ProductList() {
   }, []);
   useEffect(() => {
     if (nowCategory) {
-      console.log('@@@@', nowCategory);
-
       setProductList([]);
       setLastId('');
       getProductByCategory();
@@ -85,22 +81,21 @@ export default function ProductList() {
           dataLength={productList.length}
           next={getProductByCategory}
           hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <>
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+            </>
+          }
           endMessage={<p></p>}
         >
           {productList.map((product) => {
             return <ProductItem {...product} key={product.id} />;
           })}
         </InfiniteScroll>
-        {/* ) : (
-          <>
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-          </>
-        )} */}
       </div>
       <div className="py-8 bg-white" />
       <Link href="/add">

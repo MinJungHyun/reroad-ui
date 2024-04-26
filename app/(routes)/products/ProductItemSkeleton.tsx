@@ -11,7 +11,7 @@ export function ProductItemSkeleton() {
         <div className="flex flex-col">
           <div className=" space-y-1 w-full">
             <div className="space-y-2">
-              <Skeleton className="h-5 w-[250px]" />
+              <Skeleton className="h-5 w-[220px]" />
               <Skeleton className="h-5 w-[150px]" />
               <Skeleton className="h-3 w-[30px]" />
               <Skeleton className="h-4 w-[60px]" />
