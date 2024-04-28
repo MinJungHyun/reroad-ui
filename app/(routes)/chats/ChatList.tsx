@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { dummyChats } from '@/util/dummyChat';
-import { ChatItem } from './ChatItem';
-import { ChatItemSkeleton } from './ChatItemSkeleton';
-import { useAuth } from '@/hooks/useAuth';
+import { dummyChats } from "@/util/dummyChat";
+import { useAuth } from "@/hooks/useAuth";
+
+import { ChatItem } from "./ChatItem";
+import { ChatItemSkeleton } from "./ChatItemSkeleton";
 
 export default function ChatList() {
   const { user } = useAuth();
@@ -28,4 +29,3 @@ export default function ChatList() {
     </div>
   );
 }
-

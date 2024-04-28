@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { API_BASE_URL } from "@/lib/consts";
-import Link from "next/link";
 
 function LoginKakaoButton() {
   return (

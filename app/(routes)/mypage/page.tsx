@@ -1,4 +1,6 @@
+import { ReactElement } from "react";
 import Link from "next/link";
+
 import {
   IconHeart,
   IconReceipt,
@@ -8,7 +10,12 @@ import {
 import { HeaderFixed } from "@/components/layout/HeaderFixed";
 import Divider from "@/components/ui/divider";
 
-function ActivityBlock({ icon, label }) {
+interface ActivityBlockProps {
+  icon: ReactElement;
+  label: string;
+}
+
+function ActivityBlock({ icon, label }: ActivityBlockProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="rounded-full bg-gray-200 m-0 mb-2 p-3 w-12 h-12 flex justify-center items-center">

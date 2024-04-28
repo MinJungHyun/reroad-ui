@@ -1,7 +1,7 @@
-import { Divider } from '@/components/hr';
-import { dummyProduct } from '@/util/dummyProduct';
-import ImageSwiper from './ImageSwiper';
-import api from '@/hooks/axios';
+import { Divider } from "@/components/hr";
+import api from "@/hooks/axios";
+
+import ImageSwiper from "./ImageSwiper";
 
 interface Props {
   params: { id: number };
@@ -31,8 +31,8 @@ interface IProduct {
   isHidden: boolean;
   hideAt: Date | null;
   deletedAt: Date | null;
-  transactionType: 'SALE';
-  transactionState: 'ONGOING';
+  transactionType: "SALE";
+  transactionState: "ONGOING";
   completedAt: Date | null;
   categoryId: number;
   brandId?: number;
@@ -51,7 +51,7 @@ export default async function ProductDetail({ params: { id } }: Props) {
   // const product: IProduct | null = dummyProduct?.find((prod) => prod.id === Number(id)) || null;
   const { data } = res;
   const product: IProduct | null = data;
-  console.log('@@@@', product);
+  console.log("@@@@", product);
 
   const images = product?.images.map((e) => e.url) || [];
   const images2 = [...images, ...images, ...images, ...images, ...images];
@@ -63,24 +63,38 @@ export default async function ProductDetail({ params: { id } }: Props) {
       <div className="flex flex-col justify-start items-center max-w-[420px]  ">
         <div className="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4 p-4 ">
           <div className="flex justify-start items-center self-stretch flex-0 relative gap-2">
-            <img src={product?.createdBy.image} alt="profile" className="w-10 h-10 rounded-full" />
+            <img
+              src={product?.createdBy.image}
+              alt="profile"
+              className="w-10 h-10 rounded-full"
+            />
 
             <div className="flex flex-col justify-center items-start flex-grow h-10 relative gap-1">
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">{product?.createdBy.name}</p>
-              <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#4f4f4f]">중랑구 면목동</p>
+              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">
+                {product?.createdBy.name}
+              </p>
+              <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#4f4f4f]">
+                중랑구 면목동
+              </p>
             </div>
             <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative gap-1">
               <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1">
                 <div className="flex flex-col justify-start items-end flex-grow-0 flex-shrink-0 relative gap-0.5">
-                  <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#4ac1db]">37.2°C</p>
+                  <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-[#4ac1db]">
+                    37.2°C
+                  </p>
                   <div className="self-stretch flex-grow-0 flex-shrink-0 h-0.5 relative overflow-hidden rounded-lg">
                     <div className="w-[46px] h-1 absolute left-[-1px] top-[-1px] bg-[#d9d9d9]" />
                     <div className="w-[22px] h-1 absolute left-[-1px] top-[-1px] bg-[#4ac1db]" />
                   </div>
                 </div>
-                <p className="flex-grow-0 flex-shrink-0 text-xl text-left text-[#4f4f4f]">🙂</p>
+                <p className="flex-grow-0 flex-shrink-0 text-xl text-left text-[#4f4f4f]">
+                  🙂
+                </p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-[#8c8c8c]">매너온도</p>
+              <p className="flex-grow-0 flex-shrink-0 text-[10px] text-left text-[#8c8c8c]">
+                매너온도
+              </p>
             </div>
           </div>
           <Divider />
@@ -93,7 +107,9 @@ export default async function ProductDetail({ params: { id } }: Props) {
                 <p>끌올 1일 전</p>
               </div>
             </div>
-            <p className="self-stretch flex-grow-0 flex-shrink-0 w-[358px] text-sm text-left text-black">{product.description}</p>
+            <p className="self-stretch flex-grow-0 flex-shrink-0 w-[358px] text-sm text-left text-black">
+              {product.description}
+            </p>
             <div className="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-0.5 text-xs text-[#8c8c8c]">
               <p>관심 {product.likeCount}</p>
               <p>·</p>
@@ -102,7 +118,9 @@ export default async function ProductDetail({ params: { id } }: Props) {
           </div>
           <Divider />
           <div className="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0 relative">
-            <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">이 게시글 신고하기</p>
+            <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-black">
+              이 게시글 신고하기
+            </p>
             <div className="flex-grow-0 flex-shrink-0 w-3 h-3">
               <div className="w-3 h-3 absolute left-[345.5px] top-[3.5px] object-contain">
                 <i className="ri-arrow-right-s-line text-black" />
@@ -177,4 +195,3 @@ export default async function ProductDetail({ params: { id } }: Props) {
     </div>
   );
 }
-

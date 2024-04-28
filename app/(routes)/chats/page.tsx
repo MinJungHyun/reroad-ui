@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { IconNotification } from '@/components/icon';
-import { dummyChats } from '@/util/dummyChat';
-import { HeaderFixed } from '../../components/layout/HeaderFixed';
-import { ChatItem } from './ChatItem';
-import ChatList from './ChatList';
+import { IconNotification } from "@/components/icon";
+
+import { HeaderFixed } from "../../components/layout/HeaderFixed";
+import ChatList from "./ChatList";
 
 export default function ChatsPage() {
   return (
@@ -21,4 +20,3 @@ export default function ChatsPage() {
     </div>
   );
 }
-

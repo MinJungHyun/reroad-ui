@@ -1,7 +1,7 @@
-'use client';
-import { createContext, useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
-import { getCookie, setCookie } from 'cookies-next';
+"use client";
+
+import { createContext, useState, useEffect, useContext, useMemo } from "react";
+import { getCookie, setCookie } from "cookies-next";
 
 interface IUserInfo {
   id: string;
@@ -11,17 +11,19 @@ interface IUserInfo {
 }
 
 const decodeAccessToken = (accessToken: string) => {
-  return JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64').toString());
+  return JSON.parse(
+    Buffer.from(accessToken.split(".")[1], "base64").toString(),
+  );
 };
 const AuthContext = createContext({});
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLoading, setIsLoading] = useState(true);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [, setIsLoading] = useState(true);
   const [user, setUser] = useState<IUserInfo>({} as IUserInfo);
 
   useEffect(() => {
     const checkAccessTokenValidity = async () => {
-      const accessToken = getCookie('access_token');
+      const accessToken = getCookie("access_token");
 
       if (!accessToken) {
         // Access token이 없는 경우 로그인 페이지로 리디렉션 또는 다른 처리
@@ -32,7 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(payload);
       setUser(payload);
 
-      const expirationTime = payload.exp * 1000; // UNIX timestamp
+      // const expirationTime = payload.exp * 1000; // UNIX timestamp
 
       // if (Date.now() >= expirationTime) {
       //   // Access token이 만료된 경우, refresh token 또는 다른 인증 방법을 사용하여 새로운 access token을 가져옴
@@ -56,25 +58,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async () => {
     try {
-      const res = await fetch('/api/login');
+      const res = await fetch("/api/login");
       if (res.ok) {
         const data = await res.json();
         setUser(data);
         // router.push('/');
       } else {
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error("Error logging in:", error);
     }
   };
 
   const logout = async () => {
     try {
       setUser({} as IUserInfo);
-      setCookie('access_token', '', { expires: new Date(0) });
+      setCookie("access_token", "", { expires: new Date(0) });
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
   };
 
@@ -82,8 +84,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(userData);
   };
 
-  return <AuthContext.Provider value={{ user, login, logout, updateUser }}>{children}</AuthContext.Provider>;
-};
+  const AuthContextValue = useMemo(
+    () => ({
+      user,
+      login,
+      logout,
+      updateUser,
+    }),
+    [user, login, logout, updateUser],
+  );
+
+  return (
+    <AuthContext.Provider value={AuthContextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
 interface IAuthContext {
   user: IUserInfo;
   login: () => void;
@@ -92,7 +108,5 @@ interface IAuthContext {
 }
 
 export const useAuth = () => {
-  const context = useContext(AuthContext) as IAuthContext;
-  return context;
+  return useContext(AuthContext) as IAuthContext;
 };
-

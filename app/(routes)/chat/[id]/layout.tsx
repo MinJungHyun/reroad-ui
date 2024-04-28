@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import { IconLeft, IconMore } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { IChat, dummyChats } from '@/util/dummyChat';
+import Link from "next/link";
+import { MoreVertical } from "lucide-react";
+
+import { IconLeft } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import { IChat, dummyChats } from "@/util/dummyChat";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import { MoreVertical } from 'lucide-react';
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 export interface IChatProps {
   data: IChat | null;
@@ -33,7 +33,11 @@ function ChatDetailHeader({ data }: IChatProps) {
         <div className="flex-0 flex gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button size="icon" variant="outline" className="h-8 w-8 border-0">
+              <Button
+                size="icon"
+                variant="outline"
+                className="h-8 w-8 border-0"
+              >
                 <MoreVertical className="h-3.5 w-3.5" />
                 <span className="sr-only">More</span>
               </Button>
@@ -55,9 +59,16 @@ function ChatInputContainer() {
   return null;
 }
 
-export default function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
+export default function ChatDetailLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { id: string };
+}) {
   const { id } = params;
-  const chat: IChat | null = dummyChats?.find((ct) => ct.id === Number(id)) || null;
+  const chat: IChat | null =
+    dummyChats?.find((ct) => ct.id === Number(id)) || null;
 
   return (
     <div className="w-full">
@@ -67,4 +78,3 @@ export default function ChatDetailLayout({ children, params }: { children: React
     </div>
   );
 }
-
