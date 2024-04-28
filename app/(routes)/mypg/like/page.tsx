@@ -1,8 +1,9 @@
-import { IconLeft } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { LikeItem } from '@/components/mypage/LikeItem';
-import { dummyProduct } from '@/util/dummyProduct';
-import Link from 'next/link';
+import Link from "next/link";
+
+import { IconLeft } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+import { LikeItem } from "@/components/mypage/LikeItem";
+import { dummyProduct } from "@/util/dummyProduct";
 
 export default function LikeList() {
   return (
@@ -26,4 +27,3 @@ export default function LikeList() {
     </div>
   );
 }
-

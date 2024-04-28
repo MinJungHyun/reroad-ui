@@ -1,8 +1,16 @@
-import { IconBookmark, IconHeart, IconMapPin, IconMegaphone, IconReceipt, IconSetting, IconShopping } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { Avatar } from '@/components/ui/avatar';
-import UserAvatar from '@/components/user/UserAvatar';
-import Link from 'next/link';
+import Link from "next/link";
+import {
+  IconBookmark,
+  IconHeart,
+  IconMapPin,
+  // IconMegaphone,
+  IconReceipt,
+  IconSetting,
+  IconShopping,
+} from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+// import { Avatar } from "@/components/ui/avatar";
+import UserAvatar from "@/components/user/UserAvatar";
 
 export default function MypageHome() {
   return (
@@ -55,8 +63,7 @@ export default function MypageHome() {
         </div>
       </main>
 
-      <UserAvatar></UserAvatar>
+      <UserAvatar />
     </div>
   );
 }
-

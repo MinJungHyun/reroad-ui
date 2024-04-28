@@ -1,7 +1,9 @@
-import { IconLeft } from '@/components/icon';
-import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import Link from 'next/link';
-import KeywordRegister from './KeywordReg';
+import Link from "next/link";
+
+import { IconLeft } from "@/components/icon";
+import { HeaderFixed } from "@/components/layout/HeaderFixed";
+
+import KeywordRegister from "./KeywordReg";
 
 export interface IKeyword {
   id: number;
@@ -17,12 +19,13 @@ export default function KeywordList() {
             <Link href="/mypg">
               <IconLeft />
             </Link>
-            <p className="text-lg font-bold text-left text-black">키워드 알림 설정</p>
+            <p className="text-lg font-bold text-left text-black">
+              키워드 알림 설정
+            </p>
           </div>
         </div>
       </HeaderFixed>
-      <KeywordRegister></KeywordRegister>
+      <KeywordRegister />
     </div>
   );
 }
-

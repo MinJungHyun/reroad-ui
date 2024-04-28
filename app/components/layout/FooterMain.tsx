@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import classNames from 'classnames';
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import classNames from "classnames";
 
 interface IMenu {
   id: string;
@@ -14,40 +14,40 @@ interface IMenu {
 
 const menu = [
   {
-    id: 'home',
-    iconOff: 'ri-home-5-line',
-    iconOn: 'ri-home-5-fill',
-    text: '홈',
-    link: '/'
+    id: "home",
+    iconOff: "ri-home-5-line",
+    iconOn: "ri-home-5-fill",
+    text: "홈",
+    link: "/",
   },
   {
-    id: 'products',
-    iconOff: 'ri-search-line',
-    iconOn: 'ri-search-eye-fill',
-    text: '상품',
-    link: '/products'
+    id: "products",
+    iconOff: "ri-search-line",
+    iconOn: "ri-search-eye-fill",
+    text: "상품",
+    link: "/products",
   },
   {
-    id: 'board',
-    iconOff: 'ri-article-line',
-    iconOn: 'ri-article-fill',
-    text: '게시판',
-    link: '/boards'
+    id: "board",
+    iconOff: "ri-article-line",
+    iconOn: "ri-article-fill",
+    text: "게시판",
+    link: "/boards",
   },
   {
-    id: 'chat',
-    iconOff: 'ri-question-answer-line',
-    iconOn: 'ri-question-answer-fill',
-    text: '채팅',
-    link: '/chats'
+    id: "chat",
+    iconOff: "ri-question-answer-line",
+    iconOn: "ri-question-answer-fill",
+    text: "채팅",
+    link: "/chats",
   },
   {
-    id: 'mypage',
-    iconOff: 'ri-user-smile-line',
-    iconOn: 'ri-user-smile-fill',
-    text: '내정보',
-    link: '/mypg'
-  }
+    id: "mypage",
+    iconOff: "ri-user-smile-line",
+    iconOn: "ri-user-smile-fill",
+    text: "내정보",
+    link: "/mypg",
+  },
 ];
 
 function FooterButton({ item }: { item: IMenu }) {
@@ -56,14 +56,24 @@ function FooterButton({ item }: { item: IMenu }) {
   const { iconOff, iconOn, text, link } = item;
 
   return (
-    <Link href={link} className="flex flex-col justify-start items-center flex-grow relative">
+    <Link
+      href={link}
+      className="flex flex-col justify-start items-center flex-grow relative"
+    >
       <i
-        className={classNames('text-2xl text-black', {
+        className={classNames("text-2xl text-black", {
           [iconOff]: pathname !== link,
-          [iconOn]: pathname == link
+          [iconOn]: pathname === link,
         })}
       />
-      <p className={classNames('flex-grow-0 flex-shrink-0 text-xs text-left text-black', {})}>{text}</p>
+      <p
+        className={classNames(
+          "flex-grow-0 flex-shrink-0 text-xs text-left text-black",
+          {},
+        )}
+      >
+        {text}
+      </p>
     </Link>
   );
 }
@@ -71,7 +81,7 @@ function FooterButton({ item }: { item: IMenu }) {
 export function FooterMain() {
   const pathname = usePathname();
 
-  const excludeFooterPath = ['/product/', '/chat/', '/mypg/', '/add'];
+  const excludeFooterPath = ["/product/", "/chat/", "/mypg/", "/add"];
   const isFooter = excludeFooterPath.every((path) => !pathname.includes(path));
   if (!isFooter) return null;
   return (
@@ -84,4 +94,3 @@ export function FooterMain() {
     </div>
   );
 }
-

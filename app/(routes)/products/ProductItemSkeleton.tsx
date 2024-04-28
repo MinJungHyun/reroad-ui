@@ -1,6 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton';
-import { IProduct } from '@/util/dummyProduct';
-import Image from 'next/image';
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function ProductItemSkeleton() {
   return (
@@ -22,4 +20,3 @@ export function ProductItemSkeleton() {
     </div>
   );
 }
-

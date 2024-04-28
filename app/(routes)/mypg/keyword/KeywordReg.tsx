@@ -1,61 +1,66 @@
-'use client';
-import { Input } from '@/components/ui/input';
-import api from '@/hooks/axios';
-import { getCookie } from 'cookies-next';
-import { useEffect, useRef, useState } from 'react';
-import { toast } from 'sonner';
-import KeywordItem from './KeywordItem';
-import { IKeyword } from './page';
+/* eslint-disable no-underscore-dangle */
+
+"use client";
+
+import { getCookie } from "cookies-next";
+import { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
+
+import api from "@/hooks/axios";
+import { Input } from "@/components/ui/input";
+
+import KeywordItem from "./KeywordItem";
+import { IKeyword } from "./page";
 
 export default function KeywordRegister() {
   const [keywordInfoList, setKeywordInfoList] = useState<IKeyword[]>([]);
-  const [keyword, setKeyword] = useState<string>('');
+  const [keyword, setKeyword] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (word: string) => {
-    if (word.trim() === '') return;
+    if (word.trim() === "") return;
 
     if (keywordInfoList.map((v) => v.word).includes(word)) {
-      toast.error('이미 등록된 키워드입니다.', { duration: 800 });
+      toast.error("이미 등록된 키워드입니다.", { duration: 800 });
       return;
     }
 
-    setInputValue('');
+    setInputValue("");
     setKeyword(word);
   };
 
-  const handleDelete = async (id: number) => {
-    await api.delete(`/keyword/${id}`);
-    toast('삭제되었습니다.', { duration: 800 });
-    getKeywordList();
-  };
-
   const getKeywordList = async () => {
-    const res = await api.get('/keyword/list');
+    const res = await api.get("/keyword/list");
     if (res) {
       const _keywordDataList: IKeyword[] = res.data;
       setKeywordInfoList(_keywordDataList);
     }
   };
 
+  const handleDelete = async (id: number) => {
+    await api.delete(`/keyword/${id}`);
+    toast("삭제되었습니다.", { duration: 800 });
+    getKeywordList();
+  };
+
   useEffect(() => {
     getKeywordList();
-  }, [getCookie('access_token')]);
+  }, [getCookie("access_token")]);
 
   useEffect(() => {
     const keywordRefine = keyword.trim();
-    if (keywordRefine != '') {
+    if (keywordRefine !== "") {
       api
-        .post('/keyword', {
-          word: keywordRefine
+        .post("/keyword", {
+          word: keywordRefine,
         })
         .then(() => {
           getKeywordList();
         });
 
-      setKeyword('');
-      toast('키워드 알림이 등록되었습니다.', { duration: 800 });
+      setKeyword("");
+      toast("키워드 알림이 등록되었습니다.", { duration: 800 });
     }
   }, [keyword]);
 
@@ -72,7 +77,7 @@ export default function KeywordRegister() {
                 onChange={(e) => setInputValue(e.target.value)}
                 value={inputValue}
                 onKeyUp={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     handleSubmit(inputValue);
                   }
                 }}
@@ -96,7 +101,12 @@ export default function KeywordRegister() {
       <main className="p-5 grid grid-cols-1 divide-y divide-gray-200 bg-white">
         {keywordInfoList.length > 0 ? (
           keywordInfoList.map((keywordInfo, index) => (
-            <KeywordItem keywordInfo={keywordInfo} handleDelete={handleDelete} key={index} />
+            <KeywordItem
+              keywordInfo={keywordInfo}
+              handleDelete={handleDelete}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+            />
           ))
         ) : (
           <div>등록된 키워드가 없습니다.</div>
@@ -105,4 +115,3 @@ export default function KeywordRegister() {
     </div>
   );
 }
-

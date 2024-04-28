@@ -1,10 +1,19 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { IconChat, IconHeart, IconHeartFill } from '@/components/icon';
-import { IProduct } from '@/util/dummyProduct';
+import Image from "next/image";
+import Link from "next/link";
 
-export function LikeItem({ id, images, name, location, price, chatCount, likeCount }: IProduct) {
-  const image: string = images[0]?.['url'] as string;
+import { IconChat, IconHeart, IconHeartFill } from "@/components/icon";
+import { IProduct } from "@/util/dummyProduct";
+
+export function LikeItem({
+  id,
+  images,
+  name,
+  location,
+  price,
+  chatCount,
+  likeCount,
+}: IProduct) {
+  const image: string = images[0]?.url as string;
   return (
     <div className="pt-4 w-full">
       <Link href={`/product/${id}`} key={id}>
@@ -20,28 +29,42 @@ export function LikeItem({ id, images, name, location, price, chatCount, likeCou
           <div className="flex flex-col justify-start items-start self-stretch flex-grow gap-1">
             <div className="flex flex-col justify-start items-start flex-grow relative gap-1">
               <div className="flex flex-row justify-between">
-                <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">{name}</p>
-                <IconHeartFill className="text-2xl text-[#dd0000]"></IconHeartFill>
+                <p className="flex-grow-0 flex-shrink-0 w-[232px] text-base text-left text-black">
+                  {name}
+                </p>
+                <IconHeartFill className="text-2xl text-[#dd0000]" />
               </div>
               <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-1">
-                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{location}</p>
-                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">·</p>
-                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">26초 전</p>
+                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">
+                  {location}
+                </p>
+                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">
+                  ·
+                </p>
+                <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">
+                  26초 전
+                </p>
               </div>
-              <p className="flex-grow-0 flex-shrink-0 text-[15px] font-bold text-left text-[#ff7e36]">{price}</p>
+              <p className="flex-grow-0 flex-shrink-0 text-[15px] font-bold text-left text-[#ff7e36]">
+                {price}
+              </p>
             </div>
 
             <div className="flex justify-end items-center self-stretch flex-grow-0 flex-shrink-0 gap-2">
               {chatCount > 0 && (
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5">
                   <IconChat className="text-[#8c8c8c]" />
-                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{chatCount}</p>
+                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">
+                    {chatCount}
+                  </p>
                 </div>
               )}
               {likeCount > 0 && (
                 <div className="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-0.5">
                   <IconHeart className="text-[#8c8c8c]" />
-                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">{likeCount}</p>
+                  <p className="flex-grow-0 flex-shrink-0 text-xs text-left text-[#8c8c8c]">
+                    {likeCount}
+                  </p>
                 </div>
               )}
             </div>
@@ -51,4 +74,3 @@ export function LikeItem({ id, images, name, location, price, chatCount, likeCou
     </div>
   );
 }
-

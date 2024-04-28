@@ -1,12 +1,14 @@
-'use client';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { useAuth } from '@/hooks/useAuth';
+"use client";
+
+import Link from "next/link";
+
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "../ui/button";
 
 export default function Login() {
   const { user } = useAuth();
 
-  if (user) return <></>;
+  if (user) return null;
 
   return (
     <Link href="/login">
@@ -14,4 +16,3 @@ export default function Login() {
     </Link>
   );
 }
-
