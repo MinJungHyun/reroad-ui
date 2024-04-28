@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IconNotification, IconSearch } from "@/components/icon";
@@ -9,10 +10,30 @@ import { IProduct } from "@/util/dummyProduct";
 import { CategorySelector } from "./CategorySelector";
 import { ProductItem } from "./ProductItem";
 import { ProductItemSkeleton } from "./ProductItemSkeleton";
+=======
+import { IconNotification, IconSearch } from '@/components/icon';
+import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import api from '@/hooks/axios';
+import { IProduct } from '@/util/dummyProduct';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { CategorySelector } from './CategorySelector';
+import { ProductItem } from './ProductItem';
+import { ProductItemSkeleton } from './ProductItemSkeleton';
+import InfiniteScroll from 'react-infinite-scroll-component';
+>>>>>>> 3c7216c913dd70de461c350257401c88a499e9a4
 
+const defaultTake = 10;
 export default function ProductList() {
+<<<<<<< HEAD
   const [nowCategory, setNowCategory] = useState<string>("110");
+=======
+  const [hasMore, setHasMore] = useState(true);
+
+  const [nowCategory, setNowCategory] = useState<string>('');
+>>>>>>> 3c7216c913dd70de461c350257401c88a499e9a4
   const [productList, setProductList] = useState<IProduct[]>([]);
+  const [lastId, setLastId] = useState<string>();
 
   const handleCategoryChange = (value: string) => {
     setNowCategory(value);
@@ -20,17 +41,44 @@ export default function ProductList() {
 
   const getProductByCategory = async () => {
     if (nowCategory) {
-      const res = await api.get(`/product/category/${nowCategory}`);
+      let cursor = '';
+
+      if (lastId) {
+        cursor = `&cursorId=${lastId}`;
+      }
+      const res = await api.get(`/product/category_cursor/${nowCategory}?take=${defaultTake}&${cursor}`);
       const { data } = res;
-      setProductList(data);
+      // 더 불러올 데이터가 있는지 확인
+      if (data.length === 0) {
+        setHasMore(false);
+        return;
+      }
+      const isAlready = productList.find((product) => product.id === data[0].id);
+      if (isAlready) {
+        return;
+      }
+      setProductList((prev) => [...prev, ...data]);
+
+      if (data.length > 0) {
+        setLastId(data[data.length - 1].id);
+      }
+      // 더 불러올 데이터가 있는지 확인
+      if (data.length === 0) {
+        setHasMore(false);
+      }
     }
   };
-
+  useEffect(() => {
+    setNowCategory('110');
+  }, []);
   useEffect(() => {
     if (nowCategory) {
+      setProductList([]);
+      setLastId('');
       getProductByCategory();
     }
   }, [nowCategory]);
+
   return (
     <div>
       <HeaderFixed>
@@ -48,19 +96,25 @@ export default function ProductList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {productList.length ? (
-          productList.map((product) => {
+        <InfiniteScroll
+          dataLength={productList.length}
+          next={getProductByCategory}
+          hasMore={hasMore}
+          loader={
+            <>
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+              <ProductItemSkeleton />
+            </>
+          }
+          endMessage={<p></p>}
+        >
+          {productList.map((product) => {
             return <ProductItem {...product} key={product.id} />;
-          })
-        ) : (
-          <>
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-            <ProductItemSkeleton />
-          </>
-        )}
+          })}
+        </InfiniteScroll>
       </div>
       <div className="py-8 bg-white" />
       <Link href="/add">
