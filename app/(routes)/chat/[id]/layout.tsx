@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { IconLeft, IconMore } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { IChat, dummyChats } from '@/util/dummyChat';
+import { IChatDummy, dummyChats } from '@/util/dummyChat';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { MoreVertical } from 'lucide-react';
 
 export interface IChatProps {
-  data: IChat | null;
+  data: IChatDummy | null;
 }
 
 function ChatDetailHeader({ data }: IChatProps) {
@@ -57,7 +57,8 @@ function ChatInputContainer() {
 
 export default function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
-  const chat: IChat | null = dummyChats?.find((ct) => ct.id === Number(id)) || null;
+  const chat: IChatDummy | null = dummyChats?.find((ct) => ct.id === Number(id)) || null;
+  console.log('@@@@@@', chat);
 
   return (
     <div className="w-full">

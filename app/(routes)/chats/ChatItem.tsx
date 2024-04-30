@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { IChat } from '@/util/dummyChat';
+import { IChatDummy } from '@/util/dummyChat';
 
-export function ChatItem(chat: IChat) {
+export function ChatItem(chat: IChatDummy) {
   const { id, name, time, message } = chat;
   return (
     <Link href={`/chat/${id}`}>

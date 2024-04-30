@@ -1,15 +1,18 @@
 'use client';
+import { API_BASE_HOST } from '@/lib/consts';
 import { useEffect, useState } from 'react';
 import io, { Socket } from 'socket.io-client';
 interface Props {
   room: string;
 }
 interface IMessageItem {
-  type: 'string' | 'image';
+  type: 'STRING' | 'IMAGE';
   message: string;
   room: string;
   userId: number;
 }
+
+const SOCKET_SERVER_URL = API_BASE_HOST || 'http://localhost:3000';
 export default function ChatSocket({ room }: Props) {
   const [userId, setUserId] = useState<number>(1);
   const [socket, setSocket] = useState<Socket>();
@@ -18,7 +21,7 @@ export default function ChatSocket({ room }: Props) {
 
   const makeMessageObj = (message: string) => {
     return {
-      type: 'string',
+      type: 'STRING',
       message: message,
       room: room,
       userId: userId
@@ -26,7 +29,7 @@ export default function ChatSocket({ room }: Props) {
   };
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3010'); // NestJS 서버의 주소에 맞게 변경해야 합니다.
+    const newSocket = io(SOCKET_SERVER_URL); // NestJS 서버의 주소에 맞게 변경해야 합니다.
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
@@ -57,7 +60,6 @@ export default function ChatSocket({ room }: Props) {
 
   return (
     <div>
-      <h1>Chat App</h1>
       <div>
         {messageItems.map((messageItem, index) => {
           const { userId, message } = messageItem;
