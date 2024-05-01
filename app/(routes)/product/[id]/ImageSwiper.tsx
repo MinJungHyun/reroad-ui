@@ -1,14 +1,10 @@
 'use client';
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-// import required modules
-import { Pagination } from 'swiper/modules';
 
 export default function ImageSwiper({ images }: { images: string[] }) {
   return (

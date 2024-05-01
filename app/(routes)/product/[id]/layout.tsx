@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import { Divider } from '@/components/hr';
 import { IconHome, IconLeft, IconLink, IconMore } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
+import Link from 'next/link';
+import ButtonChat from './button-chat';
 // import { IProduct, dummyProduct } from "@/util/dummyProduct";
 
 function ProductDetailHeader() {
@@ -65,11 +66,7 @@ function ProductDetailFooter({ productId }: { productId: number }) {
               <p className="flex-grow-0 flex-shrink-0 text-xs font-bold text-left text-[#8c8c8c]">가격 제안 불가</p>
             </div>
           </div>
-          <Link href={`/chat/${productId}`}>
-            <div className="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2.5 px-3.5 py-2 rounded bg-[#ff7e36]">
-              <p className="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">채팅하기</p>
-            </div>
-          </Link>
+          <ButtonChat productId={productId} />
         </div>
       </div>
     </div>

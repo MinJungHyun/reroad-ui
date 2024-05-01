@@ -5,8 +5,22 @@ import { dummyChats } from '@/util/dummyChat';
 import { HeaderFixed } from '../../components/layout/HeaderFixed';
 import { ChatItem } from './ChatItem';
 import ChatList from './ChatList';
+import api from '@/hooks/axios';
+import { useEffect, useState } from 'react';
+import { IChatListItem } from './chats.type';
 
 export default function ChatsPage() {
+  const [list, setList] = useState<IChatListItem[]>();
+  useEffect(() => {
+    const fetchChatList = async () => {
+      const res = await api.get('/chat/list');
+      const chatList: IChatListItem[] = res.data;
+      if (chatList.length > 0) {
+        setList(chatList);
+      }
+    };
+    fetchChatList();
+  }, []);
   return (
     <div>
       <HeaderFixed>
@@ -17,7 +31,7 @@ export default function ChatsPage() {
           <IconNotification className="text-xl" />
         </div>
       </HeaderFixed>
-      <ChatList />
+      <ChatList list={list} />
     </div>
   );
 }

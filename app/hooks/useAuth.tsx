@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { getCookie, setCookie } from 'cookies-next';
 
-interface IUserInfo {
+export interface IUserInfo {
   id: string;
   name: string;
   email: string;
