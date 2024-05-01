@@ -2,21 +2,18 @@
 import { API_BASE_HOST } from '@/lib/consts';
 import { useEffect, useState } from 'react';
 import io, { Socket } from 'socket.io-client';
+import ChatMessageList, { AutoScroll } from './components/chat-message-list';
+import { ChatInput } from './components/chat-input';
+import { IChatMessage, ISendMessage, MessageType } from './chat.type';
 interface Props {
   room: string;
-}
-interface IMessageItem {
-  type: 'STRING' | 'IMAGE';
-  message: string;
-  room: string;
-  userId: number;
 }
 
 const SOCKET_SERVER_URL = API_BASE_HOST || 'http://localhost:3000';
 export default function ChatSocket({ room }: Props) {
   const [userId, setUserId] = useState<number>(1);
   const [socket, setSocket] = useState<Socket>();
-  const [messageItems, setMessageItems] = useState<IMessageItem[]>([]);
+  const [messageItems, setMessageItems] = useState<IChatMessage[]>([]);
   const [input, setInput] = useState('');
 
   const makeMessageObj = (message: string) => {
@@ -37,10 +34,19 @@ export default function ChatSocket({ room }: Props) {
       console.log('Connected to server');
     });
 
-    newSocket.on('chatMessage', (message: IMessageItem) => {
+    newSocket.on('chatMessage', (message: ISendMessage) => {
       console.log('@@@@ front ', message);
 
-      setMessageItems((prevMessages) => [...prevMessages, message]);
+      const item: IChatMessage = {
+        id: messageItems.length + 1,
+        chatId: 1,
+        userId: message.userId,
+        message: message.message,
+        type: message.type as MessageType,
+        createdAt: new Date()
+      };
+
+      setMessageItems((prevMessages) => [...prevMessages, item]);
     });
 
     return () => {
@@ -60,15 +66,10 @@ export default function ChatSocket({ room }: Props) {
 
   return (
     <div>
-      <div>
-        {messageItems.map((messageItem, index) => {
-          const { userId, message } = messageItem;
-          return (
-            <p key={index}>
-              {[userId]} {message}
-            </p>
-          );
-        })}
+      <div className="w-full h-full flex flex-col bg-gray-100 p-1 pt-4">
+        <ChatMessageList chatMessages={messageItems} />
+        <AutoScroll dep={messageItems} />
+        <ChatInput sendMessage={sendMessage} />
       </div>
 
       <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your message..." />

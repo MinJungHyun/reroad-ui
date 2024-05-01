@@ -59,9 +59,8 @@ function ChatInputContainer() {
 
 export default async function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
-
-  const chat = (await api.get(`/chat/${id}/info`)).data;
-
+  const res = await api.get(`/chat/i/${id}`);
+  const chat = res.data;
   const chatInfo: IChatInfo = {
     id: chat.id,
     user: chat.product?.createdBy,

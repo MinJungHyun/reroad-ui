@@ -7,9 +7,9 @@ export enum MessageType {
 }
 export interface IChatMessage {
   id: number;
+  message: string;
   chatId: number;
   userId: number;
-  message: string;
   type: MessageType;
   createdAt: Date;
 }
@@ -18,4 +18,11 @@ export interface IChatInfo {
   id: number;
   user: IUserInfo;
   product: IProduct;
+}
+
+export interface ISendMessage {
+  type: 'STRING' | 'IMAGE';
+  message: string;
+  room: string;
+  userId: number;
 }
