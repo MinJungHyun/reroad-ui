@@ -12,11 +12,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { MoreVertical } from 'lucide-react';
-import api from '@/hooks/axios';
-import { IChatInfo } from './chat.type';
 
 export interface IChatProps {
-  data: IChatInfo | null;
+  data: IChatDummy | null;
 }
 
 function ChatDetailHeader({ data }: IChatProps) {
@@ -29,7 +27,7 @@ function ChatDetailHeader({ data }: IChatProps) {
           </Link>
         </div>
         <div className="flex-auto flex-row gap-4">
-          <div className="flex gap-1 text-sm">{data?.user.name}</div>
+          <div className="flex gap-1 text-sm">{data?.name}</div>
           <div className="flex gap-1 text-xs">방해금지 시간이예요</div>
         </div>
         <div className="flex-0 flex gap-4">
@@ -57,19 +55,14 @@ function ChatInputContainer() {
   return null;
 }
 
-export default async function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
+export default function ChatDetailLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   const { id } = params;
-  const res = await api.get(`/chat/i/${id}`);
-  const chat = res.data;
-  const chatInfo: IChatInfo = {
-    id: chat.id,
-    user: chat.product?.createdBy,
-    product: chat.product
-  };
+  const chat: IChatDummy | null = dummyChats?.find((ct) => ct.id === Number(id)) || null;
+  console.log('@@@@@@', chat);
 
   return (
     <div className="w-full">
-      <ChatDetailHeader data={chatInfo} />
+      <ChatDetailHeader data={chat} />
       {children}
       <ChatInputContainer />
     </div>

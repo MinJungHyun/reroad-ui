@@ -6,7 +6,7 @@ export enum MessageType {
   IMAGE = 'IMAGE'
 }
 export interface IChatMessage {
-  id: number;
+  id: number | string;
   message: string;
   chatId: number;
   userId: number;

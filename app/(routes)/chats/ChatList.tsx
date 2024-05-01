@@ -4,6 +4,7 @@ import { dummyChats } from '@/util/dummyChat';
 import { ChatItem } from './ChatItem';
 import { ChatItemSkeleton } from './ChatItemSkeleton';
 import { useAuth } from '@/hooks/useAuth';
+import api from '@/hooks/axios';
 
 export default function ChatList() {
   const { user } = useAuth();

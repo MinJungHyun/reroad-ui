@@ -6,7 +6,6 @@ import { IChatMessage } from '../chat.type';
 
 export default function ChatMessageList({ chatMessages }: { chatMessages: IChatMessage[] }) {
   const me = 1;
-
   return (
     <div className="flex flex-col h-full mb-16 flex-1 overflow-y-auto pb-4">
       <div className="flex flex-col">
@@ -18,8 +17,8 @@ export default function ChatMessageList({ chatMessages }: { chatMessages: IChatM
               <div
                 key={chatMessage.id}
                 className={classNames('px-1 rounded-lg', {
-                  'col-start-2 col-end-13': isMe,
-                  'col-start-1 col-end-12': !isMe
+                  'col-start-4 col-end-13': isMe,
+                  'col-start-1 col-end-10': !isMe
                 })}
               >
                 <div
@@ -36,7 +35,7 @@ export default function ChatMessageList({ chatMessages }: { chatMessages: IChatM
                       <div className="flex items-center justify-center h-8 w-8 flex-shrink-0" />
                     ))}
                   <div
-                    className={classNames(`relative ml-3 text-sm py-2 px-4 shadow rounded-xl`, {
+                    className={classNames(`relative ml-3 text-sm py-2 px-2 shadow rounded-xl`, {
                       'bg-indigo-100': isMe,
                       'bg-white': !isMe
                     })}
