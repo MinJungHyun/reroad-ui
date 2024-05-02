@@ -6,15 +6,27 @@ import ChatMessageList, { AutoScroll } from './chat-message-list';
 import { ChatInput } from './chat-input';
 import { IChatMessage, ISendMessage, MessageType } from '../chat.type';
 import api from '@/hooks/axios';
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
 interface Props {
   room: string;
 }
 
 const SOCKET_SERVER_URL = API_BASE_HOST || 'http://localhost:3000';
 export default function ChatSocket({ room }: Props) {
-  const [userId, setUserId] = useState<number>(1);
+  const { user } = useAuth();
+  const router = useRouter();
+  const [userId, setUserId] = useState<number>(0);
   const [socket, setSocket] = useState<Socket>();
   const [messageItems, setMessageItems] = useState<IChatMessage[]>([]);
+
+  useEffect(() => {
+    if (user?.id) {
+      setUserId(+user.id);
+    }
+  }, [user?.id]);
 
   // init fetch messages
   useEffect(() => {
@@ -44,7 +56,7 @@ export default function ChatSocket({ room }: Props) {
       console.log('[ws-Received] ', message);
 
       const item: IChatMessage = {
-        id: `ws_${room}_${userId}_${messageItems.length + 1}`,
+        id: `ws_${room}_${userId}_${dayjs()}`,
         chatId: 1,
         userId: message.userId,
         message: message.message,
@@ -65,22 +77,24 @@ export default function ChatSocket({ room }: Props) {
   const sendMessage = (msg: string) => {
     if (msg.trim() !== '') {
       if (socket) {
-        socket.emit('chatMessage', makeMessageString(msg));
+        if (userId !== 0) {
+          socket.emit('chatMessage', {
+            type: 'STRING',
+            message: msg,
+            room: room,
+            userId: userId
+          });
+        } else {
+          toast.error('로그인이 필요합니다.');
+          router.push('/login');
+        }
       }
     }
   };
 
-  const makeMessageString = (message: string) => {
-    return {
-      type: 'STRING',
-      message: message,
-      room: room,
-      userId: userId
-    };
-  };
-
   return (
     <div className="w-full h-full flex flex-col bg-gray-100 p-1 pt-4">
+      {userId}
       <ChatMessageList chatMessages={messageItems} />
       <AutoScroll dep={messageItems} />
       <ChatInput sendMessage={sendMessage} />
