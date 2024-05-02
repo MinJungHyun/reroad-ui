@@ -73,13 +73,7 @@ function ProductDetailFooter({ productId }: { productId: number }) {
   );
 }
 
-export default function ProductLayout({
-  children
-  // params,
-}: {
-  children: React.ReactNode;
-  params: { id: string };
-}) {
+export default function ProductLayout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
   // const { id } = params;
   // const product: IProduct | null =
   //   dummyProduct?.find((prd) => prd.id === Number(id)) || null;
@@ -88,7 +82,7 @@ export default function ProductLayout({
     <div className="w-full">
       <ProductDetailHeader />
       {children}
-      <ProductDetailFooter productId={1000} />
+      <ProductDetailFooter productId={+params.id} />
     </div>
   );
 }

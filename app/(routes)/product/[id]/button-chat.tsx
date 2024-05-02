@@ -11,7 +11,7 @@ export default function ButtonChat({ productId }: { productId: number }) {
       if (chatId === 0) {
         toast.error('잘못된 오류 입니다.', { duration: 800 });
       } else {
-        router.push(`/chat2/${chatId}`);
+        router.push(`/chat/${chatId}`);
       }
     });
   };
