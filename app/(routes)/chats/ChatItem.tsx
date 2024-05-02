@@ -13,7 +13,7 @@ export function ChatItem(chatItem: IChatListItem) {
   return (
     <Link href={`/chat/${chatId}`}>
       <div className="flex justify-start w-full gap-4 p-4">
-        <div className="relative">
+        <div className="relative w-15 flex-none">
           <div className="absolute ">
             <img className="w-6 h-6 rounded-full border border-slate-600" src={userImage} />
           </div>
@@ -21,7 +21,7 @@ export function ChatItem(chatItem: IChatListItem) {
             <img className="w-9 h-9 rounded-md border  border-slate-600" src={productImage || `/no-image.png`} />
           </div>
         </div>
-        <div className="flex-auto justify-center flex flex-col gap-1 ">
+        <div className="flex-1 justify-center flex flex-col gap-1 ">
           <div className="flex justify-start items-center gap-1">
             <p className="text-sm text-black font-bold ">{userName}</p>
             <p className="text-xs text-[#8c8c8c]" title={`${dayjs(messageAt).format('YYYY-MM-DD HH:mm:ss')}`}>
