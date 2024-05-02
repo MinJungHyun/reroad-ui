@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
       const payload = decodeAccessToken(accessToken);
-      console.log(payload);
+      // console.log(payload);
       setUser(payload);
 
       const expirationTime = payload.exp * 1000; // UNIX timestamp

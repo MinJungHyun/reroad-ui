@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import classNames from 'classnames';
+import { useAuth } from '@/hooks/useAuth';
 
 interface IMenu {
   id: string;
@@ -51,18 +52,25 @@ const menu = [
 ];
 
 function FooterButton({ item }: { item: IMenu }) {
-  const pathname = usePathname();
+  const { user } = useAuth();
 
+  const pathname = usePathname();
   const { iconOff, iconOn, text, link } = item;
+
+  const userImage = item.id === 'mypage' && user.id ? user.image : '';
 
   return (
     <Link href={link} className="flex flex-col justify-start items-center flex-grow relative">
-      <i
-        className={classNames('text-2xl text-black', {
-          [iconOff]: pathname !== link,
-          [iconOn]: pathname == link
-        })}
-      />
+      {userImage ? (
+        <img src={userImage} alt="user" className="w-8 h-8 rounded-full" />
+      ) : (
+        <i
+          className={classNames('text-2xl text-black', {
+            [iconOff]: pathname !== link,
+            [iconOn]: pathname == link
+          })}
+        />
+      )}
       <p className={classNames('flex-grow-0 flex-shrink-0 text-xs text-left text-black', {})}>{text}</p>
     </Link>
   );
