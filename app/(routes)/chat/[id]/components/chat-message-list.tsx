@@ -3,11 +3,13 @@
 import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { IChatMessage } from '../chat.type';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function ChatMessageList({ chatMessages }: { chatMessages: IChatMessage[] }) {
-  const me = 1;
+  const { user } = useAuth();
+  const me = +user?.id;
   return (
-    <div className="flex flex-col h-full mb-16 flex-1 overflow-y-auto pb-4">
+    <div className="flex flex-col h-full flex-1 overflow-y-auto pb-10">
       <div className="flex flex-col">
         <div className="grid grid-cols-12 gap-y-2">
           {chatMessages.map((chatMessage, index) => {
