@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
 import { IconAttachment, IconSend } from '@/components/icon';
-import { dummyChatDetail } from '@/util/dummyChat';
+import classNames from 'classnames';
+import { useRef, useState } from 'react';
 
 interface IChatMessage {
   id: number;

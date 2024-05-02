@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { IconChat, IconHeart, IconHeartFill } from '@/components/icon';
-import { IProduct } from '@/util/dummyProduct';
+import { IProduct } from '@/(routes)/product/product.type';
 
 export function LikeItem({ id, images, name, location, price, chatCount, likeCount }: IProduct) {
   const image: string = images[0]?.['url'] as string;

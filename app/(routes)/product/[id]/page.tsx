@@ -1,7 +1,6 @@
 import { Divider } from '@/components/hr';
-import { dummyProduct } from '@/util/dummyProduct';
-import ImageSwiper from './ImageSwiper';
 import api from '@/hooks/axios';
+import ImageSwiper from './components/image-swiper';
 
 interface Props {
   params: { id: number };

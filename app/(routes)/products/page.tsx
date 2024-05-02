@@ -3,13 +3,13 @@
 import { IconNotification, IconSearch } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import api from '@/hooks/axios';
-import { IProduct } from '@/util/dummyProduct';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CategorySelector } from './CategorySelector';
 import { ProductItem } from './ProductItem';
 import { ProductItemSkeleton } from './ProductItemSkeleton';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { IProduct } from '../product/product.type';
 
 const defaultTake = 10;
 export default function ProductList() {

@@ -2,8 +2,7 @@ import { Divider } from '@/components/hr';
 import { IconHome, IconLeft, IconLink, IconMore } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import Link from 'next/link';
-import ButtonChat from './button-chat';
-// import { IProduct, dummyProduct } from "@/util/dummyProduct";
+import ButtonChat from './components/button-chat';
 
 function ProductDetailHeader() {
   return (

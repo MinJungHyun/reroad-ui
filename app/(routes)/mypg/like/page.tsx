@@ -1,8 +1,7 @@
 import { IconLeft } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
-import { LikeItem } from '@/components/mypage/LikeItem';
-import { dummyProduct } from '@/util/dummyProduct';
 import Link from 'next/link';
+import { LikeItem } from './components/list-item';
 
 export default function LikeList() {
   return (
@@ -18,9 +17,9 @@ export default function LikeList() {
         </div>
       </HeaderFixed>
       <div className="flex flex-col divide-y divide-gray-300 space-y-4 p-4 pt-0 bg-white">
-        {dummyProduct.map((product) => (
+        {/* {dummyProduct.map((product) => (
           <LikeItem {...product} key={product.id} />
-        ))}
+        ))} */}
       </div>
       <div className="py-8 bg-gradient-to-b from-white to-[rgba(255,255,255,0)]" />
     </div>
