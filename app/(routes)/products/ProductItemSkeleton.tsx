@@ -1,7 +1,4 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import { IProduct } from '@/util/dummyProduct';
-import Image from 'next/image';
-
 export function ProductItemSkeleton() {
   return (
     <div className="pt-4 w-full">

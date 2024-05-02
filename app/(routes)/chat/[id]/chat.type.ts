@@ -1,5 +1,5 @@
+import { IProduct } from '@/(routes)/product/product.type';
 import { IUserInfo } from '@/hooks/useAuth';
-import { IProduct } from '@/util/dummyProduct';
 
 export enum MessageType {
   STRING = 'STRING',

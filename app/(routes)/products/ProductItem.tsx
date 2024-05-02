@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { IconChat, IconHeart } from '@/components/icon';
-import { IProduct } from '@/util/dummyProduct';
+import { IProduct } from '../product/product.type';
 
 const parseToWon = (price: number | string): string => {
   const _price = typeof price === 'string' ? parseInt(price) : price;
