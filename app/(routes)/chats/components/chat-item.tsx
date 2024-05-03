@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { IChatListItem } from './chats.type';
+import { IChatListItem } from '../chats.type';
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';

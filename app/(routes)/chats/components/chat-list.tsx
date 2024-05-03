@@ -1,9 +1,9 @@
 'use client';
 
 import { useAuth } from '@/hooks/useAuth';
-import { ChatItem } from './ChatItem';
-import { ChatItemSkeleton } from './ChatItemSkeleton';
-import { IChatListItem } from './chats.type';
+import { IChatListItem } from '../chats.type';
+import { ChatItem } from '../components/chat-item';
+import { ChatItemSkeleton } from './chat-item-skeleton';
 
 interface Props {
   list: IChatListItem[];
@@ -11,13 +11,12 @@ interface Props {
 export default function ChatList({ list }: Props) {
   const { user } = useAuth();
 
-  if (!user.id) {
+  if (!user.id || list.length === 0) {
     return (
       <div className="flex flex-col bg-white">
-        <ChatItemSkeleton />
-        <ChatItemSkeleton />
-        <ChatItemSkeleton />
-        <ChatItemSkeleton />
+        {Array.from({ length: 6 }).map((_, index) => (
+          <ChatItemSkeleton key={index} />
+        ))}
       </div>
     );
   }

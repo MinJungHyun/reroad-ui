@@ -4,37 +4,38 @@ import { IconNotification } from '@/components/icon';
 import api from '@/hooks/axios';
 import { useEffect, useState } from 'react';
 import { HeaderFixed } from '../../components/layout/HeaderFixed';
-import ChatList from './ChatList';
+import ChatList from './components/chat-list';
 import { IChatListItem } from './chats.type';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 
 export default function ChatsPage() {
   const [list, setList] = useState<IChatListItem[]>([]);
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (user?.id) {
-      const fetchChatList = async () => {
-        const res = await api.get('/chat/list', {
-          headers: {
-            'Cache-Control': 'no-cache'
+    if (!isLoading) {
+      if (user?.id) {
+        const fetchChatList = async () => {
+          const res = await api.get('/chat/list', {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          });
+          const chatList: IChatListItem[] = res.data;
+          if (chatList.length > 0) {
+            setList(chatList);
           }
-        });
-        const chatList: IChatListItem[] = res.data;
-        if (chatList.length > 0) {
-          setList(chatList);
-        }
-      };
-      fetchChatList();
-    }
-  }, [user?.id]);
+        };
 
-  if (user?.id === undefined) {
-    router.push('/login');
-    return;
-  }
+        fetchChatList();
+      } else {
+        router.push('/login');
+      }
+    }
+  }, [user?.id, isLoading]);
+
   return (
     <div>
       <HeaderFixed>

@@ -82,12 +82,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(userData);
   };
 
-  return <AuthContext.Provider value={{ user, login, logout, updateUser }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, login, logout, isLoading, updateUser }}>{children}</AuthContext.Provider>;
 };
 interface IAuthContext {
   user: IUserInfo;
   login: () => void;
   logout: () => void;
+  isLoading: boolean;
   updateUser: (userData: IUserInfo) => void;
 }
 
