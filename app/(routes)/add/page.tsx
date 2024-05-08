@@ -18,6 +18,8 @@ import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react';
 import { ImageUploader } from './ImageUploader';
 
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+
 const SaveCheckDialog = ({ children }: { children: React.ReactNode }) => {
   const Router = useRouter();
   return (
@@ -72,8 +74,22 @@ const formSchema = z.object({
   }),
   description: z.string().min(1, {
     message: '설명을 적어주세요.'
+  }),
+  transactionMethod: z.array(z.string()).refine((value: string[]) => value.some((item: string) => item), {
+    message: '적어도 하나의 항목을 선택해야 합니다.'
   })
 });
+
+const transactionMethodItems = [
+  {
+    id: '1',
+    label: '직거래'
+  },
+  {
+    id: '2',
+    label: '택배거래'
+  }
+];
 const items = [
   {
     id: '1',
@@ -96,16 +112,6 @@ export default function AddProduct() {
     }
   });
 
-  const onCheckedChange = (field: InputProps & RefAttributes<HTMLInputElement>, checked: boolean) => {
-    if (Array.isArray(field.value)) {
-      if (checked) {
-        // field.onChange([...field.value, item.id]);
-      } else {
-        // field.onChange(field.value.filter((value) => value !== item.id));
-      }
-    }
-  };
-
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
@@ -120,7 +126,7 @@ export default function AddProduct() {
           <ImageUploader />
         </div>
         {/* 이미지 업로드 버튼 */}
-        <div className="p-4 space-y-12 bg-white">
+        <div className="p-4 space-y-12 bg-white pb-24">
           <FormField
             control={form.control}
             name="productName"
@@ -171,13 +177,17 @@ export default function AddProduct() {
                     key={item.id}
                     control={form.control}
                     name="locations"
-                    render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => {
+                    render={({ field }) => {
                       return (
                         <FormItem key={item.id} className="flex flex-row items-start space-x-3 space-y-0">
                           <FormControl>
                             <Checkbox
                               checked={Array.isArray(field.value) && field.value.includes(item.id)}
-                              onCheckedChange={(checked) => onCheckedChange(field, !!checked)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(field.value?.filter((value) => value !== item.id));
+                              }}
                             />
                           </FormControl>
                           <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
@@ -186,6 +196,40 @@ export default function AddProduct() {
                     }}
                   />
                 ))}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="transactionMethod"
+            render={() => (
+              <FormItem className="mb-10">
+                <p className="text-xs mb-4">거래 방식</p>
+                <FormField
+                  control={form.control}
+                  name="transactionMethod"
+                  render={({ field }) => {
+                    return (
+                      <ToggleGroup
+                        key={field.name}
+                        className="justify-start"
+                        type="multiple"
+                        variant="outline"
+                        defaultValue={['1']}
+                        onValueChange={(e) => {
+                          field.onChange(e);
+                        }}
+                      >
+                        {transactionMethodItems.map((item) => (
+                          <FormControl key={item.id}>
+                            <ToggleGroupItem value={item.id}>{item.label}</ToggleGroupItem>
+                          </FormControl>
+                        ))}
+                      </ToggleGroup>
+                    );
+                  }}
+                />
                 <FormMessage />
               </FormItem>
             )}
