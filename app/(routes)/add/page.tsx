@@ -4,21 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { InputCheckboxGroup } from '@/components/form/InputCheckboxGroup';
+import { InputText } from '@/components/form/InputText';
+import { InputTextarea } from '@/components/form/InputTextarea';
+import { IInputToggleItem, InputToggleGroup } from '@/components/form/InputToggleGroups';
 import { IconLeft } from '@/components/icon';
 import { HeaderFixed } from '@/components/layout/HeaderFixed';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input, InputProps } from '@/components/ui/input';
-import { Textarea, TextareaProps } from '@/components/ui/textarea';
-import { RefAttributes, useState } from 'react';
+import { Form } from '@/components/ui/form';
 import { useRouter } from 'next/navigation';
-
-import React, { useRef } from 'react';
+import React from 'react';
 import { ImageUploader } from './ImageUploader';
-
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 const SaveCheckDialog = ({ children }: { children: React.ReactNode }) => {
   const Router = useRouter();
@@ -80,23 +77,23 @@ const formSchema = z.object({
   })
 });
 
-const transactionMethodItems = [
+const transactionMethodItems: IInputToggleItem[] = [
   {
-    id: '1',
+    value: '1',
     label: '직거래'
   },
   {
-    id: '2',
+    value: '2',
     label: '택배거래'
   }
 ];
 const items = [
   {
-    id: '1',
+    value: '1',
     label: '서울 강서구'
   },
   {
-    id: '2',
+    value: '2',
     label: '서울 강남구'
   }
 ];
@@ -127,113 +124,16 @@ export default function AddProduct() {
         </div>
         {/* 이미지 업로드 버튼 */}
         <div className="p-4 space-y-12 bg-white pb-24">
-          <FormField
-            control={form.control}
-            name="productName"
-            render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => (
-              <FormItem>
-                <p className="text-xs">상품명</p>
-                <FormControl>
-                  <Input placeholder="상품명" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="price"
-            render={({ field }: { field: InputProps & React.RefAttributes<HTMLInputElement> }) => (
-              <FormItem>
-                <p className="text-xs">거래방식</p>
-                <FormControl>
-                  <Input placeholder="￦ 가격을 입력해주세요" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
+          <InputText name="productName" label="상품명" placeholder="상품명"></InputText>
+          <InputText name="price" label="가격" placeholder="￦ 가격을 입력해주세요"></InputText>
+          <InputTextarea
             name="description"
-            render={({ field }: { field: TextareaProps & React.RefAttributes<HTMLTextAreaElement> }) => (
-              <FormItem>
-                <p className="text-xs">자세한 설명</p>
-                <FormControl>
-                  <Textarea placeholder="상품의 연식, 상태를 자세히 적어주세요." {...field} className="h-36" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="locations"
-            render={() => (
-              <FormItem>
-                <p className="text-xs mb-4">거래희망장소</p>
-                {items.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="locations"
-                    render={({ field }) => {
-                      return (
-                        <FormItem key={item.id} className="flex flex-row items-start space-x-3 space-y-0">
-                          <FormControl>
-                            <Checkbox
-                              checked={Array.isArray(field.value) && field.value.includes(item.id)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.id])
-                                  : field.onChange(field.value?.filter((value) => value !== item.id));
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal">{item.label}</FormLabel>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                ))}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="transactionMethod"
-            render={() => (
-              <FormItem className="mb-10">
-                <p className="text-xs mb-4">거래 방식</p>
-                <FormField
-                  control={form.control}
-                  name="transactionMethod"
-                  render={({ field }) => {
-                    return (
-                      <ToggleGroup
-                        key={field.name}
-                        className="justify-start"
-                        type="multiple"
-                        variant="outline"
-                        defaultValue={['1']}
-                        onValueChange={(e) => {
-                          field.onChange(e);
-                        }}
-                      >
-                        {transactionMethodItems.map((item) => (
-                          <FormControl key={item.id}>
-                            <ToggleGroupItem value={item.id}>{item.label}</ToggleGroupItem>
-                          </FormControl>
-                        ))}
-                      </ToggleGroup>
-                    );
-                  }}
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            label="자세한 설명"
+            placeholder="상품의 연식, 상태를 자세히 적어주세요."
+            className={'h-36'}
+          ></InputTextarea>
+          <InputCheckboxGroup name="locations" label="거래희망장소" options={items}></InputCheckboxGroup>
+          <InputToggleGroup name="transactionMethod" label="거래 방식" options={transactionMethodItems}></InputToggleGroup>
         </div>
         <div className="fixed bottom-0 left-0 right-0  max-w-[420px] min-w-[320px] w-full mx-auto flex flex-row items-center h-16 bg-white px-4 ">
           <Button type="submit" className="  w-full " size={'lg'}>
