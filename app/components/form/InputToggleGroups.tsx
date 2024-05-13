@@ -17,7 +17,6 @@ interface IInputToggleGroupsProps {
 }
 export const InputToggleGroup = ({ name, label, options, defaultValue, className }: IInputToggleGroupsProps) => {
   const { control } = useFormContext();
-  console.log('@@@@', defaultValue);
 
   return (
     <FormField
