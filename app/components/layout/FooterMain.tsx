@@ -28,13 +28,13 @@ const menu = [
     text: '상품',
     link: '/products'
   },
-  {
-    id: 'board',
-    iconOff: 'ri-article-line',
-    iconOn: 'ri-article-fill',
-    text: '게시판',
-    link: '/boards'
-  },
+  // {
+  //   id: 'board',
+  //   iconOff: 'ri-article-line',
+  //   iconOn: 'ri-article-fill',
+  //   text: '게시판',
+  //   link: '/boards'
+  // },
   {
     id: 'chat',
     iconOff: 'ri-question-answer-line',
